@@ -51,19 +51,19 @@ Users can replicate the model template and populate it with their own SRC-relate
 
 ## Citation
 
-  Edgar Ribeiro João, Julián Garrido, & Manuel Parra-Royón. (2026). Edgar25-coder/SRCNet-SemanticModel: Semantic Model for the SRCNet-Code (Version v1.2.2) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22831620
+  Edgar Ribeiro João, Julián Garrido, & Manuel Parra-Royón. (2026). Edgar25-coder/SRCNet-SemanticModel: Source code (Version v1.2.3) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22897624
   
   Bibtex entry:
   
 ```bibtex
-@misc{edgar202517608322,
+@software{edgar_ribeiro_joao_2026_22897624,
   author       = {Edgar Ribeiro João and Julián Garrido and Manuel Parra-Royón},
-  title        = {Edgar25-coder/SRCNet-SemanticModel: Semantic Model for the SRCNet-Code},
+  title        = {Edgar25-coder/SRCNet-SemanticModel: Source code},
   month        = {sep},
   year         = {2026},
   publisher    = {Zenodo},
-  version      = {v1.2.2},
-  doi          = {10.5281/zenodo.22831620},
+  version      = {v1.2.3},
+  doi          = {10.5281/zenodo.22897624},
 }
 ```
 
