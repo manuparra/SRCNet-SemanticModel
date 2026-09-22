@@ -414,7 +414,7 @@
             {
                 "@id": "https://w3id.org/srcnet/node/swedsrc",
                 "@type": "src:SRC",
-                "schema:name": "swedishSRC",
+                "schema:name": "sweSRC",
                 "src:operatedBy": {
                     "@type": "schema:Organization",
                     "schema:name":"University of Gothenburg",
@@ -460,7 +460,7 @@
                         "schema:telephone": "+46 701234567",
                         "schema:worksFor": {
                             "@type": "schema:Organization",
-                            "schema:name": "University of Gothenburg"                        
+                            "schema:name": "University of Gothenburg"                      
                         }
                     },
 
@@ -1529,7 +1529,7 @@
             {
                 "@id": "https://w3id.org/srcnet/node/swisrc",
                 "@type": "src:SRC",
-                "schema:name": "swisSRC",
+                "schema:name": "chSRC",
                 "src:operatedBy": {
                     "@type": "schema:Organization",
                     "schema:name":"ETH Zurich",
@@ -1889,7 +1889,7 @@
             {
                 "@id": "https://w3id.org/srcnet/node/chinasrc",
                 "@type": "src:SRC",
-                "schema:name": "chinaSRC",
+                "schema:name": "cnSRC",
                 "src:operatedBy": {
                     "@type": "schema:Organization",
                     "schema:name": "University of Shanghai",
@@ -2234,7 +2234,7 @@
             {
                 "@id": "https://w3id.org/srcnet/node/japansrc",
                 "@type": "src:SRC",
-                "schema:name": "japanSRC",
+                "schema:name": "jpSRC",
                 "src:operatedBy": {
                     "@type": "schema:Organization",
                     "schema:name": "University of Tokyo",

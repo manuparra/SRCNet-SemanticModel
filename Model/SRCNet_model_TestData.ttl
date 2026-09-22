@@ -220,7 +220,7 @@
 
 <https://w3id.org/srcnet/node/chinasrc> a src:SRC ;
     dcterms:hasPart <https://w3id.org/srcnet/node/chinasrc-node> ;
-    schema:name "chinaSRC" ;
+    schema:name "cnSRC" ;
     src:operatedBy [ a schema:Organization ;
             schema:contactPoint [ a schema:ContactPoint ;
                     schema:email "info@chinasrc.ch" ;
@@ -618,7 +618,7 @@
 
 <https://w3id.org/srcnet/node/japansrc> a src:SRC ;
     dcterms:hasPart <https://w3id.org/srcnet/node/japansrc-node> ;
-    schema:name "japanSRC" ;
+    schema:name "jpSRC" ;
     src:operatedBy [ a schema:Organization ;
             schema:contactPoint [ a schema:ContactPoint ;
                     schema:email "info@jsrc.es" ;
@@ -751,7 +751,7 @@
 
 <https://w3id.org/srcnet/node/swedsrc> a src:SRC ;
     dcterms:hasPart <https://w3id.org/srcnet/node/swedsrc-node> ;
-    schema:name "swedishSRC" ;
+    schema:name "sweSRC" ;
     src:operatedBy [ a schema:Organization ;
             schema:contactPoint [ a schema:ContactPoint ;
                     schema:email "infospsrc@swedish.src.sw" ;
@@ -884,7 +884,7 @@
 
 <https://w3id.org/srcnet/node/swisrc> a src:SRC ;
     dcterms:hasPart <https://w3id.org/srcnet/node/swisrc-node> ;
-    schema:name "swisSRC" ;
+    schema:name "chSRC" ;
     src:operatedBy [ a schema:Organization ;
             schema:contactPoint [ a schema:ContactPoint ;
                     schema:email "infoswissrc@src.sw" ;
