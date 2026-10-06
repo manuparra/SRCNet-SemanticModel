@@ -1,0 +1,53 @@
+@prefix sv: <https://w3id.org/srcnet/services#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+
+sv:ServiceShape a sh:NodeShape ; sh:targetClass sv:Service ;
+ sh:property [ sh:path sv:scope ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("local" "global") ] ;
+ sh:property [ sh:path sv:serviceKind ; sh:minCount 1 ; sh:datatype xsd:string ] .
+sv:DeploymentShape a sh:NodeShape ; sh:targetClass sv:Deployment ;
+ sh:property [ sh:path sv:realizesService ; sh:minCount 1 ; sh:class sv:Service ] ;
+ sh:property [ sh:path sv:environment ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("production" "preproduction" "test" "example") ] ;
+ sh:property [ sh:path sv:evidence ; sh:minCount 1 ; sh:class sv:Evidence ] .
+sv:EvidenceShape a sh:NodeShape ; sh:targetClass sv:Evidence ;
+ sh:property [ sh:path sv:evidenceStatus ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("reported" "observed" "proposed" "synthetic") ] ;
+ sh:property [ sh:path sv:sourceDate ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:date ] .
+sv:OperationalShape a sh:NodeShape ; sh:targetClass sv:OperationalProfile ;
+ sh:property [ sh:path sv:health ; sh:maxCount 1 ; sh:in ("up" "degraded" "down" "unknown") ] ;
+ sh:property [ sh:path sv:lifecycle ; sh:maxCount 1 ; sh:in ("reported-deployed" "planned" "retired" "unknown") ] .
+sv:MeasurementShape a sh:NodeShape ; sh:targetClass sv:Measurement ;
+ sh:property [ sh:path sv:metric ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+ sh:property [ sh:path sv:quantity ; sh:minCount 1 ; sh:maxCount 1 ; sh:class qudt:QuantityValue ] ;
+ sh:property [ sh:path sv:method ; sh:minCount 1 ; sh:datatype xsd:string ] ;
+ sh:property [ sh:path prov:generatedAtTime ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+ sh:property [ sh:path sv:evidence ; sh:minCount 1 ; sh:class sv:Evidence ] .
+sv:ObjectiveShape a sh:NodeShape ; sh:targetClass sv:ServiceObjective ;
+ sh:property [ sh:path sv:metric ; sh:minCount 1 ; sh:datatype xsd:string ] ;
+ sh:property [ sh:path sv:quantity ; sh:minCount 1 ; sh:maxCount 1 ; sh:class qudt:QuantityValue ] ;
+ sh:property [ sh:path sv:comparator ; sh:minCount 1 ; sh:maxCount 1 ; sh:in (">=" "<=" "=") ] ;
+ sh:property [ sh:path sv:window ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:duration ] ;
+ sh:property [ sh:path sv:evidence ; sh:minCount 1 ; sh:class sv:Evidence ] .
+sv:QuantityShape a sh:NodeShape ; sh:targetClass qudt:QuantityValue ;
+ sh:property [ sh:path qudt:numericValue ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ; sh:minInclusive 0 ] ;
+ sh:property [ sh:path qudt:unit ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] .
+sv:AllocationShape a sh:NodeShape ; sh:targetClass sv:ResourceAllocation ;
+ sh:property [ sh:path sv:resource ; sh:minCount 1 ; sh:class sv:InfrastructureResource ] ;
+ sh:property [ sh:path sv:allocationKind ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("request" "limit" "quota" "allocated") ] .
+sv:DependencyShape a sh:NodeShape ; sh:targetClass sv:Dependency ;
+ sh:property [ sh:path sv:targetService ; sh:minCount 1 ; sh:maxCount 1 ; sh:class sv:Service ] ;
+ sh:property [ sh:path sv:dependencyKind ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("hard" "soft") ] .
+sv:EndpointShape a sh:NodeShape ; sh:targetClass sv:Endpoint ;
+ sh:property [ sh:path dcat:endpointURL ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] .
+sv:MaintenanceShape a sh:NodeShape ; sh:targetClass sv:MaintenanceWindow ;
+ sh:property [ sh:path sv:startsAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ; sh:lessThan sv:endsAt ] ;
+ sh:property [ sh:path sv:endsAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+ sh:property [ sh:path sv:downtimeKind ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("Planned" "Unplanned") ] .
+sv:RegistrationShape a sh:NodeShape ; sh:targetClass sv:SiteCapsRecord ;
+ sh:property [ sh:path sv:siteCapsId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$" ] ;
+ sh:property [ sh:path sv:scope ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("local" "global") ] ;
+ sh:property [ sh:path sv:siteCapsType ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+ sh:property [ sh:path sv:isForceDisabled ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:boolean ] ;
+ sh:property [ sh:path sv:contractVersion ; sh:minCount 1 ; sh:maxCount 1 ; sh:hasValue "0.3.98" ] .

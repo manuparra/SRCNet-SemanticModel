@@ -1,0 +1,232 @@
+{
+  "@context": {
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "https://schema.org/",
+    "src": "https://w3id.org/srcnet#",
+    "sv": "https://w3id.org/srcnet/services#",
+    "unit": "http://qudt.org/vocab/unit/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "https://example.org/srcnet/global/functional",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/global/evidence"
+      },
+      "sv:function": [
+        "Federated authentication",
+        "Token issuance"
+      ],
+      "sv:protocol": [
+        "OpenID Connect",
+        "OAuth 2.0"
+      ]
+    },
+    {
+      "@id": "https://example.org/srcnet/global/evidence",
+      "@type": "sv:Evidence",
+      "schema:description": "Template only. All organisations, sites, resources and targets are fictional.",
+      "sv:evidenceStatus": "synthetic",
+      "sv:sourceDate": {
+        "@type": "xsd:date",
+        "@value": "2026-10-06"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/global/security",
+      "@type": "sv:SecurityProfile",
+      "sv:authorizationPolicy": {
+        "@type": "xsd:anyURI",
+        "@value": "https://docs.example.org/iam/policy"
+      },
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/global/evidence"
+      },
+      "sv:protocol": "OIDC"
+    },
+    {
+      "@id": "https://example.org/srcnet/global/objective",
+      "@type": "sv:ServiceObjective",
+      "sv:comparator": ">=",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/global/evidence"
+      },
+      "sv:metric": "availability",
+      "sv:quantity": {
+        "@id": "https://example.org/srcnet/global/availability-target"
+      },
+      "sv:window": {
+        "@type": "xsd:duration",
+        "@value": "P30D"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/global/compute",
+      "@type": "sv:InfrastructureResource",
+      "sv:resourceKind": "compute"
+    },
+    {
+      "@id": "https://example.org/srcnet/global/administration",
+      "@type": "sv:AdministrationProfile",
+      "sv:backupPolicy": "Synthetic policy: daily backup, quarterly restore test",
+      "sv:changeManagement": "Reviewed deployment changes and maintenance notice",
+      "sv:escalation": "Example IAM on-call team, then federation operations",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/global/evidence"
+      },
+      "sv:operator": {
+        "@id": "https://example.org/srcnet/global/operator"
+      },
+      "sv:runbook": {
+        "@type": "xsd:anyURI",
+        "@value": "https://docs.example.org/iam/runbook"
+      },
+      "sv:supportURL": {
+        "@type": "xsd:anyURI",
+        "@value": "https://support.example.org/"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/global/hosting-node",
+      "@type": "src:Node",
+      "sv:consumesService": {
+        "@id": "https://example.org/srcnet/global/iam"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/global/consumer-node",
+      "@type": "src:Node",
+      "sv:consumesService": {
+        "@id": "https://example.org/srcnet/global/iam"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/global/memory",
+      "@type": "qudt:QuantityValue",
+      "qudt:numericValue": {
+        "@type": "xsd:decimal",
+        "@value": "4294967296.0"
+      },
+      "qudt:unit": {
+        "@id": "unit:BYTE"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/global/iam",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "Synthetic global IAM",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/global/evidence"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/global/functional"
+      },
+      "sv:hasDeployment": {
+        "@id": "https://example.org/srcnet/global/deployment"
+      },
+      "sv:scope": "global",
+      "sv:serviceKind": "iam"
+    },
+    {
+      "@id": "https://example.org/srcnet/global/deployment",
+      "@type": "sv:Deployment",
+      "sv:administration": {
+        "@id": "https://example.org/srcnet/global/administration"
+      },
+      "sv:allocation": {
+        "@id": "https://example.org/srcnet/global/allocation"
+      },
+      "sv:endpoint": {
+        "@id": "https://example.org/srcnet/global/endpoint"
+      },
+      "sv:environment": "example",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/global/evidence"
+      },
+      "sv:hostedAt": {
+        "@id": "https://example.org/srcnet/global/hosting-site"
+      },
+      "sv:objective": {
+        "@id": "https://example.org/srcnet/global/objective"
+      },
+      "sv:operational": {
+        "@id": "https://example.org/srcnet/global/operations"
+      },
+      "sv:realizesService": {
+        "@id": "https://example.org/srcnet/global/iam"
+      },
+      "sv:security": {
+        "@id": "https://example.org/srcnet/global/security"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/global/availability-target",
+      "@type": "qudt:QuantityValue",
+      "qudt:numericValue": {
+        "@type": "xsd:decimal",
+        "@value": "99.9"
+      },
+      "qudt:unit": {
+        "@id": "unit:PERCENT"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/global/allocation",
+      "@type": "sv:ResourceAllocation",
+      "sv:allocationKind": "request",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/global/evidence"
+      },
+      "sv:metric": "memory-bytes",
+      "sv:quantity": {
+        "@id": "https://example.org/srcnet/global/memory"
+      },
+      "sv:resource": {
+        "@id": "https://example.org/srcnet/global/compute"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/global/hosting-site",
+      "@type": "sv:Site",
+      "schema:name": "Example IAM hosting site",
+      "sv:partOfNode": {
+        "@id": "https://example.org/srcnet/global/hosting-node"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/global/operations",
+      "@type": "sv:OperationalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/global/evidence"
+      },
+      "sv:health": "unknown",
+      "sv:lifecycle": "planned"
+    },
+    {
+      "@id": "https://example.org/srcnet/global/endpoint",
+      "@type": "sv:Endpoint",
+      "dcat:endpointURL": {
+        "@id": "https://iam.example.org/"
+      },
+      "sv:endpointRole": "identity-provider",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/global/evidence"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/global/operator",
+      "@type": "schema:Organization",
+      "schema:name": "Example global service operator"
+    }
+  ]
+}

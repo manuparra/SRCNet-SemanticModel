@@ -1,0 +1,62 @@
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix schema: <https://schema.org/> .
+@prefix sv: <https://w3id.org/srcnet/services#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/srcnet/espSRC/synthetic/allocation> a sv:ResourceAllocation ;
+    sv:allocationKind "request" ;
+    sv:evidence <https://example.org/srcnet/espSRC/synthetic/evidence> ;
+    sv:metric "memory-bytes" ;
+    sv:quantity <https://example.org/srcnet/espSRC/synthetic/memory> ;
+    sv:resource <https://example.org/srcnet/espSRC/synthetic/compute> .
+
+<https://example.org/srcnet/espSRC/synthetic/availability> a sv:ServiceObjective ;
+    sv:comparator ">=" ;
+    sv:evidence <https://example.org/srcnet/espSRC/synthetic/evidence> ;
+    sv:metric "availability" ;
+    sv:quantity <https://example.org/srcnet/espSRC/synthetic/availability/value> ;
+    sv:window "P30D"^^xsd:duration .
+
+<https://example.org/srcnet/espSRC/synthetic/availability/value> a qudt:QuantityValue ;
+    qudt:numericValue 99.5 ;
+    qudt:unit unit:PERCENT .
+
+<https://example.org/srcnet/espSRC/synthetic/compute> a sv:InfrastructureResource ;
+    sv:resourceKind "compute" .
+
+<https://example.org/srcnet/espSRC/synthetic/deployment> a sv:Deployment ;
+    sv:allocation <https://example.org/srcnet/espSRC/synthetic/allocation> ;
+    sv:environment "example" ;
+    sv:evidence <https://example.org/srcnet/espSRC/synthetic/evidence> ;
+    sv:measurement <https://example.org/srcnet/espSRC/synthetic/latency-p95> ;
+    sv:objective <https://example.org/srcnet/espSRC/synthetic/availability> ;
+    sv:realizesService <https://example.org/srcnet/espSRC/synthetic/service> .
+
+<https://example.org/srcnet/espSRC/synthetic/latency-p95> a sv:Measurement ;
+    prov:generatedAtTime "2026-10-06T00:00:00+00:00"^^xsd:dateTime ;
+    sv:evidence <https://example.org/srcnet/espSRC/synthetic/evidence> ;
+    sv:method "Synthetic example: p95 HTTP response latency over the stated window" ;
+    sv:metric "latency-p95" ;
+    sv:quantity <https://example.org/srcnet/espSRC/synthetic/latency-p95/value> ;
+    sv:window "P30D"^^xsd:duration .
+
+<https://example.org/srcnet/espSRC/synthetic/latency-p95/value> a qudt:QuantityValue ;
+    qudt:numericValue 0.25 ;
+    qudt:unit unit:SEC .
+
+<https://example.org/srcnet/espSRC/synthetic/memory> a qudt:QuantityValue ;
+    qudt:numericValue 8589934592.0 ;
+    qudt:unit unit:BYTE .
+
+<https://example.org/srcnet/espSRC/synthetic/service> a sv:Service ;
+    schema:name "Example service" ;
+    sv:hasDeployment <https://example.org/srcnet/espSRC/synthetic/deployment> ;
+    sv:scope "local" ;
+    sv:serviceKind "canfar" .
+
+<https://example.org/srcnet/espSRC/synthetic/evidence> a sv:Evidence ;
+    schema:name "Synthetic tutorial data; not espSRC measurements" ;
+    sv:evidenceStatus "synthetic" ;
+    sv:sourceDate "2026-10-06"^^xsd:date .

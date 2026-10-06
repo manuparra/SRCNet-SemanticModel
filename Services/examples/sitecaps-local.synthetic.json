@@ -1,0 +1,45 @@
+{
+  "id": "00000000-0000-4000-8000-000000000001",
+  "name": "SYNTHETIC-CANFAR",
+  "version": "1.4.0",
+  "prefix": "https",
+  "host": "canfar.example.org",
+  "port": 443,
+  "path": "/",
+  "type": "canfar",
+  "is_mandatory": false,
+  "is_force_disabled": false,
+  "scope": "local",
+  "parent_node_name": "EXAMPLE",
+  "parent_site_name": "EXAMPLE-SITE",
+  "parent_site_id": "00000000-0000-4000-8000-000000000002",
+  "parent_compute_id": "00000000-0000-4000-8000-000000000003",
+  "associated_compute_id": "00000000-0000-4000-8000-000000000004",
+  "associated_storage_area_id": "00000000-0000-4000-8000-000000000005",
+  "downtime": [
+    {
+      "id": "00000000-0000-4000-8000-000000000006",
+      "date_range": "2026-10-10T00:00:00Z to 2026-10-10T01:00:00Z",
+      "type": "Planned",
+      "reason": "Synthetic maintenance example"
+    }
+  ],
+  "other_attributes": {
+    "srcnet_semantic": {
+      "profile_version": "0.1.0",
+      "service_iri": "https://example.org/srcnet/espSRC/synthetic/service",
+      "evidence_status": "synthetic"
+    },
+    "unrelated": {
+      "keep": [
+        0,
+        false,
+        null,
+        ""
+      ]
+    }
+  },
+  "future_field": {
+    "preserve": true
+  }
+}

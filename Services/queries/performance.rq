@@ -1,0 +1,9 @@
+PREFIX sv: <https://w3id.org/srcnet/services#>
+PREFIX qudt: <http://qudt.org/schema/qudt/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT ?deployment ?metric ?value ?unit ?time ?method ?evidence WHERE {
+  ?deployment sv:measurement ?measurement .
+  ?measurement sv:metric ?metric ; sv:quantity ?q ; prov:generatedAtTime ?time ;
+               sv:method ?method ; sv:evidence/sv:evidenceStatus ?evidence .
+  ?q qudt:numericValue ?value ; qudt:unit ?unit .
+}

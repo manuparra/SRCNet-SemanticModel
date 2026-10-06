@@ -1,0 +1,9 @@
+{
+  "retrievedOn": "2026-10-06",
+  "operatorDocumentation": "https://site-capabilities.srcnet.skao.int/api/v1/www/docs/oper",
+  "apiVersion": "0.3.98",
+  "originalModelCommit": "c82254411b70cb1826fac2b85bbea7f56f3439a1",
+  "sourceRepository": "https://gitlab.com/ska-telescope/src/src-service-apis/ska-src-site-capabilities-api",
+  "sourceCommit": "f99d9f7e0d21e7488e2802e4b4e6130601c420d1",
+  "note": "Live OpenAPI extracted from objSpec in operator HTML; generated x-code-samples omitted. Source main is corroborating evidence, not assumed deployed revision."
+}

@@ -1,0 +1,794 @@
+{
+  "@context": {
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "https://schema.org/",
+    "src": "https://w3id.org/srcnet#",
+    "sv": "https://w3id.org/srcnet/services#",
+    "unit": "http://qudt.org/vocab/unit/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "sv:escalation",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Escalation route or responsible team.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:Dependency",
+      "@type": "owl:Class",
+      "rdfs:comment": "Directed dependency of a deployment on a logical service.",
+      "rdfs:label": "Dependency"
+    },
+    {
+      "@id": "sv:MaintenanceWindow",
+      "@type": "owl:Class",
+      "rdfs:comment": "Planned or unplanned downtime interval.",
+      "rdfs:label": "MaintenanceWindow"
+    },
+    {
+      "@id": "sv:OperationalProfile",
+      "@type": "owl:Class",
+      "rdfs:comment": "Lifecycle, observed health, monitoring and maintenance information.",
+      "rdfs:label": "OperationalProfile"
+    },
+    {
+      "@id": "sv:siteCapsType",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Exact SiteCaps type from the pinned scope enumeration.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:parentNodeName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "SiteCaps parent_node_name; do not guess from a display label.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:sourceDate",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Date of the source information, not a live availability assertion.",
+      "rdfs:range": {
+        "@id": "xsd:date"
+      }
+    },
+    {
+      "@id": "sv:path",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "SiteCaps endpoint path, preserved verbatim.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:downtimeJSON",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Lossless original downtime array, including order and extension fields.",
+      "rdfs:range": {
+        "@id": "rdf:JSON"
+      }
+    },
+    {
+      "@id": "sv:SecurityProfile",
+      "@type": "owl:Class",
+      "rdfs:comment": "Authentication and authorisation policy references; never credentials.",
+      "rdfs:label": "SecurityProfile"
+    },
+    {
+      "@id": "sv:AdministrationProfile",
+      "@type": "owl:Class",
+      "rdfs:comment": "Accountable operator, support, escalation, runbooks and change management.",
+      "rdfs:label": "AdministrationProfile"
+    },
+    {
+      "@id": "sv:comparator",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Objective comparator: <=, >= or =.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:method",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Measurement method and aggregation definition.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:downtimeKind",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Planned or Unplanned, matching SiteCaps.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:backupPolicy",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Backup policy reference or description.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:releaseName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Helm release identifier.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:registration",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "External SiteCaps projection.",
+      "rdfs:range": {
+        "@id": "sv:SiteCapsRecord"
+      }
+    },
+    {
+      "@id": "sv:resourceKind",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "compute, storage or network.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:SiteCapsRecord",
+      "@type": "owl:Class",
+      "rdfs:comment": "Version-bound projection of a SiteCaps local/global service object.",
+      "rdfs:label": "SiteCapsRecord"
+    },
+    {
+      "@id": "sv:endpointRole",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Role such as portal, API, capabilities, health or metrics.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "https://w3id.org/srcnet/services",
+      "@type": "owl:Ontology",
+      "owl:versionInfo": "0.1.0",
+      "rdfs:comment": "Proposed SRCNet services extension. Namespace is not registered or endorsed. No remote imports required."
+    },
+    {
+      "@id": "sv:allocationKind",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "request, limit, quota or allocated; do not add shared capacities.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:Service",
+      "@type": "owl:Class",
+      "rdfs:comment": "Stable logical service, reusing the original catalogue identity.",
+      "rdfs:label": "Service",
+      "rdfs:subClassOf": {
+        "@id": "dcat:DataService"
+      }
+    },
+    {
+      "@id": "sv:hasDeployment",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Links a logical service to a deployment.",
+      "rdfs:range": {
+        "@id": "sv:Deployment"
+      }
+    },
+    {
+      "@id": "sv:lifecycle",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "reported-deployed, planned, retired or unknown.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:measurement",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "An observed performance value.",
+      "rdfs:range": {
+        "@id": "sv:Measurement"
+      }
+    },
+    {
+      "@id": "sv:associatedComputeId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Associated compute UUID, distinct from parent_compute_id.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:siteCapsId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "SiteCaps service UUID; never fabricated for a real deployment.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:health",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "up, degraded, down or unknown; never inferred from the force-disable flag.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:port",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "SiteCaps port, preserved verbatim.",
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      }
+    },
+    {
+      "@id": "sv:workloadNamespace",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Namespace for user workload pods.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:environment",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Deployment environment: production, preproduction, test or example.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:tokenScope",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Expected OAuth scope.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:reason",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Maintenance reason.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:realizesService",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Logical service implemented by this deployment.",
+      "rdfs:range": {
+        "@id": "sv:Service"
+      }
+    },
+    {
+      "@id": "sv:ServiceObjective",
+      "@type": "owl:Class",
+      "rdfs:comment": "Target with a comparator and evaluation window; not a measurement.",
+      "rdfs:label": "ServiceObjective"
+    },
+    {
+      "@id": "sv:operator",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Accountable operating organisation.",
+      "rdfs:range": {
+        "@id": "schema:Organization"
+      }
+    },
+    {
+      "@id": "sv:protocol",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Interface or authentication protocol.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:window",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Measurement or objective evaluation window.",
+      "rdfs:range": {
+        "@id": "xsd:duration"
+      }
+    },
+    {
+      "@id": "sv:FunctionalProfile",
+      "@type": "owl:Class",
+      "rdfs:comment": "Functions, standards, interfaces and supported data formats.",
+      "rdfs:label": "FunctionalProfile"
+    },
+    {
+      "@id": "sv:namespace",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Kubernetes namespace.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:scope",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "local or global logical service scope; independent of physical hosting.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:version",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Version of the identified component.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:endpoint",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Service interface.",
+      "rdfs:range": {
+        "@id": "sv:Endpoint"
+      }
+    },
+    {
+      "@id": "sv:metric",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Metric name, e.g. latency-p95, throughput or cpu-cores.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:parentSiteId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "SiteCaps parent_site_id UUID.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:startsAt",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "UTC or offset-aware interval start.",
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      }
+    },
+    {
+      "@id": "sv:operational",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Operational description.",
+      "rdfs:range": {
+        "@id": "sv:OperationalProfile"
+      }
+    },
+    {
+      "@id": "sv:otherAttributes",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Lossless SiteCaps extensibility JSON; semantic detail may be linked here.",
+      "rdfs:range": {
+        "@id": "rdf:JSON"
+      }
+    },
+    {
+      "@id": "sv:parentSiteName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "SiteCaps parent_site_name.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:name",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Name in the SiteCaps object.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:dependency",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Dependency assertion with evidence.",
+      "rdfs:range": {
+        "@id": "sv:Dependency"
+      }
+    },
+    {
+      "@id": "sv:host",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "SiteCaps host, preserved verbatim.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:objective",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "A proposed or agreed target.",
+      "rdfs:range": {
+        "@id": "sv:ServiceObjective"
+      }
+    },
+    {
+      "@id": "sv:Deployment",
+      "@type": "owl:Class",
+      "rdfs:comment": "A service deployed in one environment. Separate from a SiteCaps registration.",
+      "rdfs:label": "Deployment"
+    },
+    {
+      "@id": "sv:resource",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Shared resource to which an allocation applies.",
+      "rdfs:range": {
+        "@id": "sv:InfrastructureResource"
+      }
+    },
+    {
+      "@id": "sv:supportURL",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Support entry point.",
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      }
+    },
+    {
+      "@id": "sv:dependencyKind",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "hard or soft dependency.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:contractVersion",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "SiteCaps contract version against which the record was checked.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:Measurement",
+      "@type": "owl:Class",
+      "rdfs:comment": "Timestamped metric with value, unit, method and evidence.",
+      "rdfs:label": "Measurement"
+    },
+    {
+      "@id": "sv:Evidence",
+      "@type": "owl:Class",
+      "rdfs:comment": "Source and date of a report, observation, proposal or synthetic fixture.",
+      "rdfs:label": "Evidence"
+    },
+    {
+      "@id": "sv:prefix",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "SiteCaps URL scheme without separators.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:allocation",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Allocation, requirement or quota; not whole-site capacity.",
+      "rdfs:range": {
+        "@id": "sv:ResourceAllocation"
+      }
+    },
+    {
+      "@id": "sv:functional",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Functional description.",
+      "rdfs:range": {
+        "@id": "sv:FunctionalProfile"
+      }
+    },
+    {
+      "@id": "sv:quantity",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Measured, requested or allocated quantity.",
+      "rdfs:range": {
+        "@id": "qudt:QuantityValue"
+      }
+    },
+    {
+      "@id": "sv:format",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Supported data format or MIME type.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:isMandatory",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "SiteCaps local-service mandatory flag.",
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "sv:tokenAudience",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Expected token audience; not a token.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:isForceDisabled",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "SiteCaps administrative force-disable flag.",
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "sv:serviceKind",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Open semantic classification; not the SiteCaps type enumeration.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:security",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Security description.",
+      "rdfs:range": {
+        "@id": "sv:SecurityProfile"
+      }
+    },
+    {
+      "@id": "sv:associatedStorageAreaId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Associated storage area UUID.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:repository",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Source repository URL.",
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      }
+    },
+    {
+      "@id": "sv:parentComputeId",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "SiteCaps parent_compute_id UUID.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:evidence",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Evidence supporting this entity description.",
+      "rdfs:range": {
+        "@id": "sv:Evidence"
+      }
+    },
+    {
+      "@id": "sv:changeManagement",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Mechanism for reviewing and applying changes.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:software",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Component release.",
+      "rdfs:range": {
+        "@id": "sv:SoftwareRelease"
+      }
+    },
+    {
+      "@id": "sv:RegistrationContext",
+      "@type": "owl:Class",
+      "rdfs:comment": "Parent node/site/compute identifiers returned by SiteCaps.",
+      "rdfs:label": "RegistrationContext"
+    },
+    {
+      "@id": "sv:evidenceStatus",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "reported, observed, proposed or synthetic.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:SoftwareRelease",
+      "@type": "owl:Class",
+      "rdfs:comment": "Version of one software component; chart and application are distinct.",
+      "rdfs:label": "SoftwareRelease"
+    },
+    {
+      "@id": "sv:registrationContext",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Discovery parent metadata, not deployment ownership.",
+      "rdfs:range": {
+        "@id": "sv:RegistrationContext"
+      }
+    },
+    {
+      "@id": "sv:orchestrator",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Deployment orchestration technology.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:authorizationPolicy",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Authorisation policy reference.",
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      }
+    },
+    {
+      "@id": "sv:consumesService",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Consumption without claiming local hosting.",
+      "rdfs:range": {
+        "@id": "sv:Service"
+      }
+    },
+    {
+      "@id": "sv:Site",
+      "@type": "owl:Class",
+      "rdfs:comment": "Physical or administrative site within a SRC node; explicit SiteCaps site level.",
+      "rdfs:label": "Site"
+    },
+    {
+      "@id": "sv:authenticatesWith",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Authentication service consumed by this service.",
+      "rdfs:range": {
+        "@id": "sv:Service"
+      }
+    },
+    {
+      "@id": "sv:ResourceAllocation",
+      "@type": "owl:Class",
+      "rdfs:comment": "Service allocation or request over a shared infrastructure resource.",
+      "rdfs:label": "ResourceAllocation"
+    },
+    {
+      "@id": "sv:Endpoint",
+      "@type": "owl:Class",
+      "rdfs:comment": "An interface URL with a role, protocol and evidence status.",
+      "rdfs:label": "Endpoint"
+    },
+    {
+      "@id": "sv:runbook",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Operator runbook URL.",
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      }
+    },
+    {
+      "@id": "sv:claimName",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "PVC claim name; namespace must also be supplied.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:targetService",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Logical dependency target.",
+      "rdfs:range": {
+        "@id": "sv:Service"
+      }
+    },
+    {
+      "@id": "sv:maintenance",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "A maintenance interval.",
+      "rdfs:range": {
+        "@id": "sv:MaintenanceWindow"
+      }
+    },
+    {
+      "@id": "sv:administration",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Administration description.",
+      "rdfs:range": {
+        "@id": "sv:AdministrationProfile"
+      }
+    },
+    {
+      "@id": "sv:function",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Function provided, independently of implementation.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:hostedAt",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Actual hosting site; global scope does not imply hosting at every consumer.",
+      "rdfs:range": {
+        "@id": "sv:Site"
+      }
+    },
+    {
+      "@id": "sv:storageClass",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Kubernetes storage class.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "sv:InfrastructureResource",
+      "@type": "owl:Class",
+      "rdfs:comment": "Compute, storage or network resource used by a deployment.",
+      "rdfs:label": "InfrastructureResource",
+      "rdfs:subClassOf": {
+        "@id": "prov:Entity"
+      }
+    },
+    {
+      "@id": "sv:partOfNode",
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": "Node containing this site.",
+      "rdfs:range": {
+        "@id": "src:Node"
+      }
+    },
+    {
+      "@id": "sv:endsAt",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "UTC or offset-aware interval end.",
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      }
+    },
+    {
+      "@id": "sv:extraFields",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "Unrecognised fields retained without inventing semantic meaning.",
+      "rdfs:range": {
+        "@id": "rdf:JSON"
+      }
+    },
+    {
+      "@id": "sv:releaseKind",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": "application, helm-chart or container-image.",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    }
+  ]
+}

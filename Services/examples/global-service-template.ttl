@@ -1,0 +1,103 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix ex: <https://example.org/srcnet/global/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix schema: <https://schema.org/> .
+@prefix src: <https://w3id.org/srcnet#> .
+@prefix sv: <https://w3id.org/srcnet/services#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:consumer-node a src:Node ;
+    sv:consumesService ex:iam .
+
+ex:administration a sv:AdministrationProfile ;
+    sv:backupPolicy "Synthetic policy: daily backup, quarterly restore test" ;
+    sv:changeManagement "Reviewed deployment changes and maintenance notice" ;
+    sv:escalation "Example IAM on-call team, then federation operations" ;
+    sv:evidence ex:evidence ;
+    sv:operator ex:operator ;
+    sv:runbook "https://docs.example.org/iam/runbook"^^xsd:anyURI ;
+    sv:supportURL "https://support.example.org/"^^xsd:anyURI .
+
+ex:allocation a sv:ResourceAllocation ;
+    sv:allocationKind "request" ;
+    sv:evidence ex:evidence ;
+    sv:metric "memory-bytes" ;
+    sv:quantity ex:memory ;
+    sv:resource ex:compute .
+
+ex:availability-target a qudt:QuantityValue ;
+    qudt:numericValue 99.9 ;
+    qudt:unit unit:PERCENT .
+
+ex:compute a sv:InfrastructureResource ;
+    sv:resourceKind "compute" .
+
+ex:deployment a sv:Deployment ;
+    sv:administration ex:administration ;
+    sv:allocation ex:allocation ;
+    sv:endpoint ex:endpoint ;
+    sv:environment "example" ;
+    sv:evidence ex:evidence ;
+    sv:hostedAt ex:hosting-site ;
+    sv:objective ex:objective ;
+    sv:operational ex:operations ;
+    sv:realizesService ex:iam ;
+    sv:security ex:security .
+
+ex:endpoint a sv:Endpoint ;
+    dcat:endpointURL <https://iam.example.org/> ;
+    sv:endpointRole "identity-provider" ;
+    sv:evidence ex:evidence .
+
+ex:functional a sv:FunctionalProfile ;
+    sv:evidence ex:evidence ;
+    sv:function "Federated authentication",
+        "Token issuance" ;
+    sv:protocol "OAuth 2.0",
+        "OpenID Connect" .
+
+ex:hosting-node a src:Node ;
+    sv:consumesService ex:iam .
+
+ex:hosting-site a sv:Site ;
+    schema:name "Example IAM hosting site" ;
+    sv:partOfNode ex:hosting-node .
+
+ex:memory a qudt:QuantityValue ;
+    qudt:numericValue 4294967296.0 ;
+    qudt:unit unit:BYTE .
+
+ex:objective a sv:ServiceObjective ;
+    sv:comparator ">=" ;
+    sv:evidence ex:evidence ;
+    sv:metric "availability" ;
+    sv:quantity ex:availability-target ;
+    sv:window "P30D"^^xsd:duration .
+
+ex:operations a sv:OperationalProfile ;
+    sv:evidence ex:evidence ;
+    sv:health "unknown" ;
+    sv:lifecycle "planned" .
+
+ex:operator a schema:Organization ;
+    schema:name "Example global service operator" .
+
+ex:security a sv:SecurityProfile ;
+    sv:authorizationPolicy "https://docs.example.org/iam/policy"^^xsd:anyURI ;
+    sv:evidence ex:evidence ;
+    sv:protocol "OIDC" .
+
+ex:iam a dcat:DataService,
+        sv:Service ;
+    schema:name "Synthetic global IAM" ;
+    sv:evidence ex:evidence ;
+    sv:functional ex:functional ;
+    sv:hasDeployment ex:deployment ;
+    sv:scope "global" ;
+    sv:serviceKind "iam" .
+
+ex:evidence a sv:Evidence ;
+    schema:description "Template only. All organisations, sites, resources and targets are fictional." ;
+    sv:evidenceStatus "synthetic" ;
+    sv:sourceDate "2026-10-06"^^xsd:date .

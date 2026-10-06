@@ -1,0 +1,130 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix ex: <https://example.org/srcnet/global/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <https://schema.org/> .
+@prefix src: <https://w3id.org/srcnet#> .
+@prefix sv: <https://w3id.org/srcnet/services#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:consumer-node a src:Node ;
+    sv:consumesService ex:iam .
+
+ex:administration a sv:AdministrationProfile ;
+    sv:backupPolicy "Synthetic policy: daily backup, quarterly restore test" ;
+    sv:changeManagement "Reviewed deployment changes and maintenance notice" ;
+    sv:escalation "Example IAM on-call team, then federation operations" ;
+    sv:evidence ex:evidence ;
+    sv:operator ex:operator ;
+    sv:runbook "https://docs.example.org/iam/runbook"^^xsd:anyURI ;
+    sv:supportURL "https://support.example.org/"^^xsd:anyURI .
+
+ex:allocation a sv:ResourceAllocation ;
+    sv:allocationKind "request" ;
+    sv:evidence ex:evidence ;
+    sv:metric "memory-bytes" ;
+    sv:quantity ex:memory ;
+    sv:resource ex:compute .
+
+ex:availability-target a qudt:QuantityValue ;
+    qudt:numericValue 99.9 ;
+    qudt:unit unit:PERCENT .
+
+ex:compute a sv:InfrastructureResource ;
+    sv:resourceKind "compute" .
+
+ex:deployment a sv:Deployment ;
+    sv:administration ex:administration ;
+    sv:allocation ex:allocation ;
+    sv:endpoint ex:endpoint ;
+    sv:environment "example" ;
+    sv:evidence ex:evidence ;
+    sv:hostedAt ex:hosting-site ;
+    sv:objective ex:objective ;
+    sv:operational ex:operations ;
+    sv:realizesService ex:iam ;
+    sv:registration <urn:srcnet:sitecaps:13c44026-9ce0-59d6-aca9-ed9644751716> ;
+    sv:security ex:security .
+
+ex:endpoint a sv:Endpoint ;
+    dcat:endpointURL <https://iam.example.org/> ;
+    sv:endpointRole "identity-provider" ;
+    sv:evidence ex:evidence .
+
+ex:functional a sv:FunctionalProfile ;
+    sv:evidence ex:evidence ;
+    sv:function "Federated authentication",
+        "Token issuance" ;
+    sv:protocol "OAuth 2.0",
+        "OpenID Connect" .
+
+ex:hosting-node a src:Node ;
+    sv:consumesService ex:iam .
+
+ex:hosting-site a sv:Site ;
+    schema:name "Example IAM hosting site" ;
+    sv:partOfNode ex:hosting-node .
+
+ex:memory a qudt:QuantityValue ;
+    qudt:numericValue 4294967296.0 ;
+    qudt:unit unit:BYTE .
+
+ex:objective a sv:ServiceObjective ;
+    sv:comparator ">=" ;
+    sv:evidence ex:evidence ;
+    sv:metric "availability" ;
+    sv:quantity ex:availability-target ;
+    sv:window "P30D"^^xsd:duration .
+
+ex:operations a sv:OperationalProfile ;
+    sv:evidence ex:evidence ;
+    sv:health "unknown" ;
+    sv:lifecycle "planned" .
+
+ex:operator a schema:Organization ;
+    schema:name "Example global service operator" .
+
+ex:security a sv:SecurityProfile ;
+    sv:authorizationPolicy "https://docs.example.org/iam/policy"^^xsd:anyURI ;
+    sv:evidence ex:evidence ;
+    sv:protocol "OIDC" .
+
+<urn:srcnet:sitecaps:13c44026-9ce0-59d6-aca9-ed9644751716> a sv:SiteCapsRecord ;
+    sv:associatedComputeId "00000000-0000-4000-8000-000000000004" ;
+    sv:associatedStorageAreaId "00000000-0000-4000-8000-000000000005" ;
+    sv:contractVersion "0.3.98" ;
+    sv:downtimeJSON "[]"^^rdf:JSON ;
+    sv:extraFields "{\"future_field\": {\"preserve\": true}, \"scope\": \"global\"}"^^rdf:JSON ;
+    sv:host "iam.example.org" ;
+    sv:isForceDisabled false ;
+    sv:name "SYNTHETIC-IAM" ;
+    sv:otherAttributes "{\"srcnet_semantic\": {\"evidence_status\": \"synthetic\", \"profile_version\": \"0.1.0\", \"service_iri\": \"https://example.org/srcnet/global/iam\"}, \"unrelated\": {\"keep\": [0, false, null, \"\"]}}"^^rdf:JSON ;
+    sv:path "/" ;
+    sv:port 443 ;
+    sv:prefix "https" ;
+    sv:registrationContext <urn:srcnet:sitecaps:13c44026-9ce0-59d6-aca9-ed9644751716/parents> ;
+    sv:scope "global" ;
+    sv:siteCapsId "00000000-0000-4000-8000-000000000007" ;
+    sv:siteCapsType "iam" ;
+    sv:version "example-only" .
+
+<urn:srcnet:sitecaps:13c44026-9ce0-59d6-aca9-ed9644751716/parents> a sv:RegistrationContext ;
+    sv:parentComputeId "00000000-0000-4000-8000-000000000003" ;
+    sv:parentNodeName "EXAMPLE" ;
+    sv:parentSiteId "00000000-0000-4000-8000-000000000002" ;
+    sv:parentSiteName "EXAMPLE-SITE" .
+
+ex:iam a dcat:DataService,
+        sv:Service ;
+    schema:name "Synthetic global IAM" ;
+    sv:evidence ex:evidence ;
+    sv:functional ex:functional ;
+    sv:hasDeployment ex:deployment ;
+    sv:scope "global" ;
+    sv:serviceKind "iam" .
+
+ex:evidence a sv:Evidence ;
+    schema:description "Template only. All organisations, sites, resources and targets are fictional." ;
+    sv:evidenceStatus "synthetic" ;
+    sv:sourceDate "2026-10-06"^^xsd:date .

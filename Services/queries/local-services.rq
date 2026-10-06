@@ -1,0 +1,10 @@
+PREFIX sv: <https://w3id.org/srcnet/services#>
+PREFIX schema: <https://schema.org/>
+SELECT ?service ?name ?deployment ?environment ?health WHERE {
+  ?service a sv:Service ; sv:scope "local" ; schema:name ?name .
+  OPTIONAL {
+    ?service sv:hasDeployment ?deployment .
+    ?deployment sv:environment ?environment .
+    OPTIONAL { ?deployment sv:operational/sv:health ?health }
+  }
+} ORDER BY ?name

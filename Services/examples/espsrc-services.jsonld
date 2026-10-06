@@ -1,0 +1,1135 @@
+{
+  "@context": {
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "https://schema.org/",
+    "src": "https://w3id.org/srcnet#",
+    "sv": "https://w3id.org/srcnet/services#",
+    "unit": "http://qudt.org/vocab/unit/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "https://w3id.org/srcnet/service/espsrc-gatekeeper",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "Gatekeeper",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/espsrc-gatekeeper"
+      },
+      "sv:hasDeployment": {
+        "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-gatekeeper/production"
+      },
+      "sv:scope": "local",
+      "sv:serviceKind": "gatekeeper"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/datadistributionplatform",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "Federated data management"
+    },
+    {
+      "@id": "https://w3id.org/srcnet/service/espsrc-preparedata",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "PrepareData",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/espsrc-preparedata"
+      },
+      "sv:hasDeployment": {
+        "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-preparedata/production"
+      },
+      "sv:scope": "local",
+      "sv:serviceKind": "prepare_data"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-skaha/production",
+      "@type": "sv:Deployment",
+      "schema:description": "Known configuration, not current health. Earlier PVC and metrics-backend incidents do not establish present availability. Chart and image versions are intentionally separate.",
+      "schema:name": "Skaha session service deployment",
+      "sv:administration": {
+        "@id": "https://example.org/srcnet/espSRC/administration/espsrc-skaha"
+      },
+      "sv:allocation": [
+        {
+          "@id": "https://example.org/srcnet/espSRC/allocation/espsrc-skaha"
+        },
+        {
+          "@id": "https://example.org/srcnet/espSRC/storage-allocation/espsrc-skaha"
+        }
+      ],
+      "sv:dependency": [
+        {
+          "@id": "https://example.org/srcnet/espSRC/dependency/espsrc-skaha/authentication"
+        },
+        {
+          "@id": "https://example.org/srcnet/espSRC/dependency/espsrc-skaha/espsrc-cavern"
+        }
+      ],
+      "sv:environment": "production",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:hostedAt": {
+        "@id": "https://example.org/srcnet/espSRC/site/iaa"
+      },
+      "sv:namespace": "skaha-system",
+      "sv:operational": {
+        "@id": "https://example.org/srcnet/espSRC/operational/espsrc-skaha"
+      },
+      "sv:realizesService": [
+        {
+          "@id": "https://w3id.org/srcnet/service/espsrc-skaha"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/espsrc-notebook"
+        }
+      ],
+      "sv:releaseName": "espsrccanfar-science-platform",
+      "sv:security": {
+        "@id": "https://example.org/srcnet/espSRC/security/canfar"
+      },
+      "sv:software": [
+        {
+          "@id": "https://example.org/srcnet/espSRC/release/skaha/1.4.0"
+        },
+        {
+          "@id": "https://example.org/srcnet/espSRC/release/skaha-chart/1.7.0"
+        }
+      ],
+      "sv:workloadNamespace": "skaha-workload"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/deployment/espsrcsoda/production",
+      "@type": "sv:Deployment",
+      "schema:name": "SODA data access deployment",
+      "sv:administration": {
+        "@id": "https://example.org/srcnet/espSRC/administration/espsrcsoda"
+      },
+      "sv:allocation": {
+        "@id": "https://example.org/srcnet/espSRC/allocation/espsrcsoda"
+      },
+      "sv:dependency": {
+        "@id": "https://example.org/srcnet/espSRC/dependency/espsrcsoda/espsrc-datalake"
+      },
+      "sv:environment": "production",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:hostedAt": {
+        "@id": "https://example.org/srcnet/espSRC/site/iaa"
+      },
+      "sv:namespace": "espsrcsoda",
+      "sv:operational": {
+        "@id": "https://example.org/srcnet/espSRC/operational/espsrcsoda"
+      },
+      "sv:realizesService": {
+        "@id": "https://w3id.org/srcnet/service/espsrcsoda"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/storage-allocation/espsrc-skaha",
+      "@type": "sv:ResourceAllocation",
+      "sv:allocationKind": "allocated",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:resource": {
+        "@id": "https://example.org/srcnet/espSRC/resource/cephfs"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/dependency/espsrc-preparedata/espsrc-datalake",
+      "@type": "sv:Dependency",
+      "sv:dependencyKind": "hard",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:targetService": {
+        "@id": "https://w3id.org/srcnet/service/espsrc-datalake"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/espsrcscienceplatform",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "Interactive science sessions"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02",
+      "@type": "sv:Evidence",
+      "schema:description": "User-provided configuration history. Not a live probe or a SiteCaps database extract. Includes Skaha chart 1.7.0 / application 1.4.0 and CANFAR component deployment.",
+      "schema:name": "Operator configuration reports, 29 September–2 October 2026",
+      "sv:evidenceStatus": "reported",
+      "sv:sourceDate": {
+        "@type": "xsd:date",
+        "@value": "2026-10-02"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/storage-allocation/espsrc-datalake",
+      "@type": "sv:ResourceAllocation",
+      "sv:allocationKind": "allocated",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:resource": {
+        "@id": "https://example.org/srcnet/espSRC/resource/cephfs"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-gatekeeper/production",
+      "@type": "sv:Deployment",
+      "schema:name": "Gatekeeper deployment",
+      "sv:administration": {
+        "@id": "https://example.org/srcnet/espSRC/administration/espsrc-gatekeeper"
+      },
+      "sv:allocation": {
+        "@id": "https://example.org/srcnet/espSRC/allocation/espsrc-gatekeeper"
+      },
+      "sv:environment": "production",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:hostedAt": {
+        "@id": "https://example.org/srcnet/espSRC/site/iaa"
+      },
+      "sv:operational": {
+        "@id": "https://example.org/srcnet/espSRC/operational/espsrc-gatekeeper"
+      },
+      "sv:realizesService": {
+        "@id": "https://w3id.org/srcnet/service/espsrc-gatekeeper"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/operational/espsrcsoda",
+      "@type": "sv:OperationalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:health": "unknown",
+      "sv:lifecycle": "reported-deployed"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/security/canfar",
+      "@type": "sv:SecurityProfile",
+      "sv:authenticatesWith": {
+        "@id": "https://w3id.org/srcnet/service/authentication"
+      },
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:protocol": "OIDC"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/espsrcsoda",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "Server-side data access"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/allocation/espsrc-skaha",
+      "@type": "sv:ResourceAllocation",
+      "sv:allocationKind": "allocated",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:resource": {
+        "@id": "https://example.org/srcnet/espSRC/resource/k3s-production"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/resource/cephfs",
+      "@type": "sv:InfrastructureResource",
+      "schema:name": "Shared CephFS storage",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:resourceKind": "storage"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/allocation/espsrc-gatekeeper",
+      "@type": "sv:ResourceAllocation",
+      "sv:allocationKind": "allocated",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:resource": {
+        "@id": "https://example.org/srcnet/espSRC/resource/k3s-production"
+      }
+    },
+    {
+      "@id": "https://w3id.org/srcnet/service/espsrc-notebook",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "Notebook capability through CANFAR",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/espsrc-notebook"
+      },
+      "sv:hasDeployment": {
+        "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-skaha/production"
+      },
+      "sv:scope": "local",
+      "sv:serviceKind": "notebook"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/administration/espsrc-gatekeeper",
+      "@type": "sv:AdministrationProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:operator": {
+        "@id": "https://example.org/srcnet/espSRC/organization/iaa-csic"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/dependency/espsrcsoda/espsrc-datalake",
+      "@type": "sv:Dependency",
+      "sv:dependencyKind": "hard",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:targetService": {
+        "@id": "https://w3id.org/srcnet/service/espsrc-datalake"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/authentication",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "Federated authentication"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/release/skaha/1.4.0",
+      "@type": "sv:SoftwareRelease",
+      "schema:name": "skaha",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:releaseKind": "application",
+      "sv:version": "1.4.0"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/administration/espsrc-cavern",
+      "@type": "sv:AdministrationProfile",
+      "sv:changeManagement": "Flux GitOps / Helm",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:operator": {
+        "@id": "https://example.org/srcnet/espSRC/organization/iaa-csic"
+      }
+    },
+    {
+      "@id": "https://w3id.org/srcnet/service/registryservice",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "SRCNet registry",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/registryservice"
+      },
+      "sv:scope": "global",
+      "sv:serviceKind": "registry"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/administration/espsrc-preparedata",
+      "@type": "sv:AdministrationProfile",
+      "sv:changeManagement": "Flux GitOps / Helm",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:operator": {
+        "@id": "https://example.org/srcnet/espSRC/organization/iaa-csic"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/dependency/espsrc-skaha/espsrc-cavern",
+      "@type": "sv:Dependency",
+      "sv:dependencyKind": "hard",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:targetService": {
+        "@id": "https://w3id.org/srcnet/service/espsrc-cavern"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/administration/espsrc-datalake",
+      "@type": "sv:AdministrationProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:operator": {
+        "@id": "https://example.org/srcnet/espSRC/organization/iaa-csic"
+      }
+    },
+    {
+      "@id": "https://w3id.org/srcnet/catalog/srcnet-global",
+      "@type": "dcat:Catalog",
+      "dcat:service": [
+        {
+          "@id": "https://w3id.org/srcnet/service/authentication"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/sciencegateway"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/datadistributionplatform"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/registryservice"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/operational/espsrc-preparedata",
+      "@type": "sv:OperationalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:health": "unknown",
+      "sv:lifecycle": "reported-deployed"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-cavern/production",
+      "@type": "sv:Deployment",
+      "schema:name": "Cavern storage service deployment",
+      "sv:administration": {
+        "@id": "https://example.org/srcnet/espSRC/administration/espsrc-cavern"
+      },
+      "sv:allocation": [
+        {
+          "@id": "https://example.org/srcnet/espSRC/allocation/espsrc-cavern"
+        },
+        {
+          "@id": "https://example.org/srcnet/espSRC/storage-allocation/espsrc-cavern"
+        }
+      ],
+      "sv:dependency": {
+        "@id": "https://example.org/srcnet/espSRC/dependency/espsrc-cavern/espsrc-posixmapper"
+      },
+      "sv:environment": "production",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:hostedAt": {
+        "@id": "https://example.org/srcnet/espSRC/site/iaa"
+      },
+      "sv:namespace": "skaha-system",
+      "sv:operational": {
+        "@id": "https://example.org/srcnet/espSRC/operational/espsrc-cavern"
+      },
+      "sv:realizesService": {
+        "@id": "https://w3id.org/srcnet/service/espsrc-cavern"
+      }
+    },
+    {
+      "@id": "https://w3id.org/srcnet/service/espsrc-datalake",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "espSRC data lake / Rucio storage",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/espsrc-datalake"
+      },
+      "sv:hasDeployment": {
+        "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-datalake/production"
+      },
+      "sv:scope": "local",
+      "sv:serviceKind": "datalake"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/administration/espsrcscienceplatform",
+      "@type": "sv:AdministrationProfile",
+      "sv:changeManagement": "Flux GitOps / Helm",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:operator": {
+        "@id": "https://example.org/srcnet/espSRC/organization/iaa-csic"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/espsrc-notebook",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "Interactive notebook execution"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/dependency/espsrc-skaha/authentication",
+      "@type": "sv:Dependency",
+      "sv:dependencyKind": "hard",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:targetService": {
+        "@id": "https://w3id.org/srcnet/service/authentication"
+      }
+    },
+    {
+      "@id": "https://w3id.org/srcnet/node/espsrc",
+      "@type": "src:SRC",
+      "dcterms:hasPart": {
+        "@id": "https://w3id.org/srcnet/node/espsrc-node"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/registryservice",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "Service and resource discovery"
+    },
+    {
+      "@id": "https://w3id.org/srcnet/service/espsrc-posixmapper",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "PosixMapper",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/espsrc-posixmapper"
+      },
+      "sv:hasDeployment": {
+        "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-posixmapper/production"
+      },
+      "sv:scope": "local",
+      "sv:serviceKind": "posix-mapper"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/site/iaa",
+      "@type": "sv:Site",
+      "schema:name": "IAA-CSIC espSRC site",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:partOfNode": {
+        "@id": "https://w3id.org/srcnet/node/espsrc-node"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/allocation/espsrcscienceplatform",
+      "@type": "sv:ResourceAllocation",
+      "sv:allocationKind": "allocated",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:resource": {
+        "@id": "https://example.org/srcnet/espSRC/resource/k3s-production"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/evidence/design",
+      "@type": "sv:Evidence",
+      "schema:name": "Architectural interpretation for this example",
+      "sv:evidenceStatus": "proposed",
+      "sv:sourceDate": {
+        "@type": "xsd:date",
+        "@value": "2026-10-06"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/allocation/espsrcsoda",
+      "@type": "sv:ResourceAllocation",
+      "sv:allocationKind": "allocated",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:resource": {
+        "@id": "https://example.org/srcnet/espSRC/resource/k3s-production"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-datalake/production",
+      "@type": "sv:Deployment",
+      "schema:name": "espSRC data lake / Rucio storage deployment",
+      "sv:administration": {
+        "@id": "https://example.org/srcnet/espSRC/administration/espsrc-datalake"
+      },
+      "sv:allocation": {
+        "@id": "https://example.org/srcnet/espSRC/storage-allocation/espsrc-datalake"
+      },
+      "sv:environment": "production",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:hostedAt": {
+        "@id": "https://example.org/srcnet/espSRC/site/iaa"
+      },
+      "sv:operational": {
+        "@id": "https://example.org/srcnet/espSRC/operational/espsrc-datalake"
+      },
+      "sv:realizesService": {
+        "@id": "https://w3id.org/srcnet/service/espsrc-datalake"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/operational/espsrcscienceplatform",
+      "@type": "sv:OperationalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:health": "unknown",
+      "sv:lifecycle": "reported-deployed"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/allocation/espsrc-cavern",
+      "@type": "sv:ResourceAllocation",
+      "sv:allocationKind": "allocated",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:resource": {
+        "@id": "https://example.org/srcnet/espSRC/resource/k3s-production"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/espsrc-preparedata",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "Stage data for execution"
+    },
+    {
+      "@id": "https://w3id.org/srcnet/service/datadistributionplatform",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "SRCNet data distribution",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/datadistributionplatform"
+      },
+      "sv:scope": "global",
+      "sv:serviceKind": "data-distribution"
+    },
+    {
+      "@id": "https://w3id.org/srcnet/service/espsrc-skaha",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "Skaha session service",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/espsrc-skaha"
+      },
+      "sv:hasDeployment": {
+        "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-skaha/production"
+      },
+      "sv:scope": "local",
+      "sv:serviceKind": "skaha"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/espsrc-datalake",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "Local data storage and access"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/sciencegateway",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "Unified science entry point"
+    },
+    {
+      "@id": "https://w3id.org/srcnet/node/espsrc-node",
+      "@type": "src:Node",
+      "src:globalServiceCatalog": {
+        "@id": "https://w3id.org/srcnet/catalog/srcnet-global"
+      },
+      "src:localServiceCatalog": {
+        "@id": "https://w3id.org/srcnet/catalog/espsrc-local"
+      },
+      "sv:consumesService": [
+        {
+          "@id": "https://w3id.org/srcnet/service/authentication"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/sciencegateway"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/datadistributionplatform"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/registryservice"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/dependency/espsrcscienceplatform/espsrc-skaha",
+      "@type": "sv:Dependency",
+      "sv:dependencyKind": "hard",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:targetService": {
+        "@id": "https://w3id.org/srcnet/service/espsrc-skaha"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/allocation/espsrc-posixmapper",
+      "@type": "sv:ResourceAllocation",
+      "sv:allocationKind": "allocated",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:resource": {
+        "@id": "https://example.org/srcnet/espSRC/resource/k3s-production"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-posixmapper/production",
+      "@type": "sv:Deployment",
+      "schema:name": "PosixMapper deployment",
+      "sv:administration": {
+        "@id": "https://example.org/srcnet/espSRC/administration/espsrc-posixmapper"
+      },
+      "sv:allocation": {
+        "@id": "https://example.org/srcnet/espSRC/allocation/espsrc-posixmapper"
+      },
+      "sv:environment": "production",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:hostedAt": {
+        "@id": "https://example.org/srcnet/espSRC/site/iaa"
+      },
+      "sv:namespace": "skaha-system",
+      "sv:operational": {
+        "@id": "https://example.org/srcnet/espSRC/operational/espsrc-posixmapper"
+      },
+      "sv:realizesService": {
+        "@id": "https://w3id.org/srcnet/service/espsrc-posixmapper"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/storage-allocation/espsrc-cavern",
+      "@type": "sv:ResourceAllocation",
+      "sv:allocationKind": "allocated",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:resource": {
+        "@id": "https://example.org/srcnet/espSRC/resource/cephfs"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/endpoint/authentication",
+      "@type": "sv:Endpoint",
+      "dcat:endpointURL": {
+        "@id": "https://ska-iam.stfc.ac.uk/"
+      },
+      "sv:endpointRole": "identity-provider",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/administration/espsrc-skaha",
+      "@type": "sv:AdministrationProfile",
+      "sv:changeManagement": "Flux GitOps / Helm",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:operator": {
+        "@id": "https://example.org/srcnet/espSRC/organization/iaa-csic"
+      }
+    },
+    {
+      "@id": "https://w3id.org/srcnet/service/espsrcsoda",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "SODA data access",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/espsrcsoda"
+      },
+      "sv:hasDeployment": {
+        "@id": "https://example.org/srcnet/espSRC/deployment/espsrcsoda/production"
+      },
+      "sv:scope": "local",
+      "sv:serviceKind": "soda"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/espsrc-skaha",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "Create and manage user sessions"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/operational/espsrc-datalake",
+      "@type": "sv:OperationalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:health": "unknown",
+      "sv:lifecycle": "reported-deployed"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/endpoint/espsrcscienceplatform",
+      "@type": "sv:Endpoint",
+      "dcat:endpointURL": {
+        "@id": "https://canfar.espsrc.iaa.csic.es"
+      },
+      "sv:endpointRole": "portal",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/espsrc-cavern",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "User file access"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/release/skaha-chart/1.7.0",
+      "@type": "sv:SoftwareRelease",
+      "schema:name": "skaha-chart",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:releaseKind": "helm-chart",
+      "sv:version": "1.7.0"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/resource/k3s-production",
+      "@type": "sv:InfrastructureResource",
+      "schema:name": "espSRC production k3s cluster on OpenStack",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:orchestrator": "k3s / Kubernetes",
+      "sv:resourceKind": "compute"
+    },
+    {
+      "@id": "https://w3id.org/srcnet/service/sciencegateway",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "SRCNet Science Gateway",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/sciencegateway"
+      },
+      "sv:scope": "global",
+      "sv:serviceKind": "science-gateway"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/espsrc-posixmapper",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "Map identities to POSIX users and groups"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/deployment/espsrcscienceplatform/production",
+      "@type": "sv:Deployment",
+      "schema:name": "CANFAR science platform deployment",
+      "sv:administration": {
+        "@id": "https://example.org/srcnet/espSRC/administration/espsrcscienceplatform"
+      },
+      "sv:allocation": {
+        "@id": "https://example.org/srcnet/espSRC/allocation/espsrcscienceplatform"
+      },
+      "sv:dependency": {
+        "@id": "https://example.org/srcnet/espSRC/dependency/espsrcscienceplatform/espsrc-skaha"
+      },
+      "sv:environment": "production",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:hostedAt": {
+        "@id": "https://example.org/srcnet/espSRC/site/iaa"
+      },
+      "sv:namespace": "skaha-system",
+      "sv:operational": {
+        "@id": "https://example.org/srcnet/espSRC/operational/espsrcscienceplatform"
+      },
+      "sv:realizesService": {
+        "@id": "https://w3id.org/srcnet/service/espsrcscienceplatform"
+      }
+    },
+    {
+      "@id": "https://w3id.org/srcnet/service/authentication",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "SRCNet IAM",
+      "sv:endpoint": {
+        "@id": "https://example.org/srcnet/espSRC/endpoint/authentication"
+      },
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/authentication"
+      },
+      "sv:scope": "global",
+      "sv:serviceKind": "iam"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/organization/iaa-csic",
+      "@type": "schema:Organization",
+      "schema:name": "IAA-CSIC espSRC"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/operational/espsrc-cavern",
+      "@type": "sv:OperationalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:health": "unknown",
+      "sv:lifecycle": "reported-deployed"
+    },
+    {
+      "@id": "https://w3id.org/srcnet/service/espsrcscienceplatform",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "CANFAR science platform",
+      "sv:endpoint": {
+        "@id": "https://example.org/srcnet/espSRC/endpoint/espsrcscienceplatform"
+      },
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/espsrcscienceplatform"
+      },
+      "sv:hasDeployment": {
+        "@id": "https://example.org/srcnet/espSRC/deployment/espsrcscienceplatform/production"
+      },
+      "sv:scope": "local",
+      "sv:serviceKind": "canfar"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-preparedata/production",
+      "@type": "sv:Deployment",
+      "schema:name": "PrepareData deployment",
+      "sv:administration": {
+        "@id": "https://example.org/srcnet/espSRC/administration/espsrc-preparedata"
+      },
+      "sv:allocation": {
+        "@id": "https://example.org/srcnet/espSRC/allocation/espsrc-preparedata"
+      },
+      "sv:dependency": {
+        "@id": "https://example.org/srcnet/espSRC/dependency/espsrc-preparedata/espsrc-datalake"
+      },
+      "sv:environment": "production",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:hostedAt": {
+        "@id": "https://example.org/srcnet/espSRC/site/iaa"
+      },
+      "sv:namespace": "preparedata",
+      "sv:operational": {
+        "@id": "https://example.org/srcnet/espSRC/operational/espsrc-preparedata"
+      },
+      "sv:realizesService": {
+        "@id": "https://w3id.org/srcnet/service/espsrc-preparedata"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/operational/espsrc-gatekeeper",
+      "@type": "sv:OperationalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:health": "unknown",
+      "sv:lifecycle": "reported-deployed"
+    },
+    {
+      "@id": "https://w3id.org/srcnet/catalog/espsrc-local",
+      "@type": "dcat:Catalog",
+      "dcat:service": [
+        {
+          "@id": "https://w3id.org/srcnet/service/espsrcscienceplatform"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/espsrc-notebook"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/espsrcsoda"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/espsrc-datalake"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/espsrc-skaha"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/espsrc-cavern"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/espsrc-posixmapper"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/espsrc-preparedata"
+        },
+        {
+          "@id": "https://w3id.org/srcnet/service/espsrc-gatekeeper"
+        }
+      ]
+    },
+    {
+      "@id": "https://w3id.org/srcnet/service/espsrc-cavern",
+      "@type": [
+        "sv:Service",
+        "dcat:DataService"
+      ],
+      "schema:name": "Cavern storage service",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:functional": {
+        "@id": "https://example.org/srcnet/espSRC/function/espsrc-cavern"
+      },
+      "sv:hasDeployment": {
+        "@id": "https://example.org/srcnet/espSRC/deployment/espsrc-cavern/production"
+      },
+      "sv:scope": "local",
+      "sv:serviceKind": "cavern"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/function/espsrc-gatekeeper",
+      "@type": "sv:FunctionalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:function": "Authorise service requests"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/administration/espsrcsoda",
+      "@type": "sv:AdministrationProfile",
+      "sv:changeManagement": "Flux GitOps / Helm",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:operator": {
+        "@id": "https://example.org/srcnet/espSRC/organization/iaa-csic"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/dependency/espsrc-cavern/espsrc-posixmapper",
+      "@type": "sv:Dependency",
+      "sv:dependencyKind": "hard",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/design"
+      },
+      "sv:targetService": {
+        "@id": "https://w3id.org/srcnet/service/espsrc-posixmapper"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/operational/espsrc-skaha",
+      "@type": "sv:OperationalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:health": "unknown",
+      "sv:lifecycle": "reported-deployed"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/allocation/espsrc-preparedata",
+      "@type": "sv:ResourceAllocation",
+      "sv:allocationKind": "allocated",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:resource": {
+        "@id": "https://example.org/srcnet/espSRC/resource/k3s-production"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/operational/espsrc-posixmapper",
+      "@type": "sv:OperationalProfile",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:health": "unknown",
+      "sv:lifecycle": "reported-deployed"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/administration/espsrc-posixmapper",
+      "@type": "sv:AdministrationProfile",
+      "sv:changeManagement": "Flux GitOps / Helm",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02"
+      },
+      "sv:operator": {
+        "@id": "https://example.org/srcnet/espSRC/organization/iaa-csic"
+      }
+    }
+  ]
+}

@@ -1,0 +1,517 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
+@prefix src: <https://w3id.org/srcnet#> .
+@prefix sv: <https://w3id.org/srcnet/services#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/srcnet/node/espsrc> a src:SRC ;
+    dcterms:hasPart <https://w3id.org/srcnet/node/espsrc-node> .
+
+<https://example.org/srcnet/espSRC/administration/espsrc-cavern> a sv:AdministrationProfile ;
+    sv:changeManagement "Flux GitOps / Helm" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:operator <https://example.org/srcnet/espSRC/organization/iaa-csic> .
+
+<https://example.org/srcnet/espSRC/administration/espsrc-datalake> a sv:AdministrationProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:operator <https://example.org/srcnet/espSRC/organization/iaa-csic> .
+
+<https://example.org/srcnet/espSRC/administration/espsrc-gatekeeper> a sv:AdministrationProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:operator <https://example.org/srcnet/espSRC/organization/iaa-csic> .
+
+<https://example.org/srcnet/espSRC/administration/espsrc-posixmapper> a sv:AdministrationProfile ;
+    sv:changeManagement "Flux GitOps / Helm" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:operator <https://example.org/srcnet/espSRC/organization/iaa-csic> .
+
+<https://example.org/srcnet/espSRC/administration/espsrc-preparedata> a sv:AdministrationProfile ;
+    sv:changeManagement "Flux GitOps / Helm" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:operator <https://example.org/srcnet/espSRC/organization/iaa-csic> .
+
+<https://example.org/srcnet/espSRC/administration/espsrc-skaha> a sv:AdministrationProfile ;
+    sv:changeManagement "Flux GitOps / Helm" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:operator <https://example.org/srcnet/espSRC/organization/iaa-csic> .
+
+<https://example.org/srcnet/espSRC/administration/espsrcscienceplatform> a sv:AdministrationProfile ;
+    sv:changeManagement "Flux GitOps / Helm" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:operator <https://example.org/srcnet/espSRC/organization/iaa-csic> .
+
+<https://example.org/srcnet/espSRC/administration/espsrcsoda> a sv:AdministrationProfile ;
+    sv:changeManagement "Flux GitOps / Helm" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:operator <https://example.org/srcnet/espSRC/organization/iaa-csic> .
+
+<https://example.org/srcnet/espSRC/allocation/espsrc-cavern> a sv:ResourceAllocation ;
+    sv:allocationKind "allocated" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:resource <https://example.org/srcnet/espSRC/resource/k3s-production> .
+
+<https://example.org/srcnet/espSRC/allocation/espsrc-gatekeeper> a sv:ResourceAllocation ;
+    sv:allocationKind "allocated" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:resource <https://example.org/srcnet/espSRC/resource/k3s-production> .
+
+<https://example.org/srcnet/espSRC/allocation/espsrc-posixmapper> a sv:ResourceAllocation ;
+    sv:allocationKind "allocated" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:resource <https://example.org/srcnet/espSRC/resource/k3s-production> .
+
+<https://example.org/srcnet/espSRC/allocation/espsrc-preparedata> a sv:ResourceAllocation ;
+    sv:allocationKind "allocated" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:resource <https://example.org/srcnet/espSRC/resource/k3s-production> .
+
+<https://example.org/srcnet/espSRC/allocation/espsrc-skaha> a sv:ResourceAllocation ;
+    sv:allocationKind "allocated" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:resource <https://example.org/srcnet/espSRC/resource/k3s-production> .
+
+<https://example.org/srcnet/espSRC/allocation/espsrcscienceplatform> a sv:ResourceAllocation ;
+    sv:allocationKind "allocated" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:resource <https://example.org/srcnet/espSRC/resource/k3s-production> .
+
+<https://example.org/srcnet/espSRC/allocation/espsrcsoda> a sv:ResourceAllocation ;
+    sv:allocationKind "allocated" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:resource <https://example.org/srcnet/espSRC/resource/k3s-production> .
+
+<https://example.org/srcnet/espSRC/dependency/espsrc-cavern/espsrc-posixmapper> a sv:Dependency ;
+    sv:dependencyKind "hard" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:targetService <https://w3id.org/srcnet/service/espsrc-posixmapper> .
+
+<https://example.org/srcnet/espSRC/dependency/espsrc-preparedata/espsrc-datalake> a sv:Dependency ;
+    sv:dependencyKind "hard" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:targetService <https://w3id.org/srcnet/service/espsrc-datalake> .
+
+<https://example.org/srcnet/espSRC/dependency/espsrc-skaha/authentication> a sv:Dependency ;
+    sv:dependencyKind "hard" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:targetService <https://w3id.org/srcnet/service/authentication> .
+
+<https://example.org/srcnet/espSRC/dependency/espsrc-skaha/espsrc-cavern> a sv:Dependency ;
+    sv:dependencyKind "hard" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:targetService <https://w3id.org/srcnet/service/espsrc-cavern> .
+
+<https://example.org/srcnet/espSRC/dependency/espsrcscienceplatform/espsrc-skaha> a sv:Dependency ;
+    sv:dependencyKind "hard" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:targetService <https://w3id.org/srcnet/service/espsrc-skaha> .
+
+<https://example.org/srcnet/espSRC/dependency/espsrcsoda/espsrc-datalake> a sv:Dependency ;
+    sv:dependencyKind "hard" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:targetService <https://w3id.org/srcnet/service/espsrc-datalake> .
+
+<https://example.org/srcnet/espSRC/deployment/espsrc-cavern/production> a sv:Deployment ;
+    schema:name "Cavern storage service deployment" ;
+    sv:administration <https://example.org/srcnet/espSRC/administration/espsrc-cavern> ;
+    sv:allocation <https://example.org/srcnet/espSRC/allocation/espsrc-cavern>,
+        <https://example.org/srcnet/espSRC/storage-allocation/espsrc-cavern> ;
+    sv:dependency <https://example.org/srcnet/espSRC/dependency/espsrc-cavern/espsrc-posixmapper> ;
+    sv:environment "production" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:hostedAt <https://example.org/srcnet/espSRC/site/iaa> ;
+    sv:namespace "skaha-system" ;
+    sv:operational <https://example.org/srcnet/espSRC/operational/espsrc-cavern> ;
+    sv:realizesService <https://w3id.org/srcnet/service/espsrc-cavern> .
+
+<https://example.org/srcnet/espSRC/deployment/espsrc-datalake/production> a sv:Deployment ;
+    schema:name "espSRC data lake / Rucio storage deployment" ;
+    sv:administration <https://example.org/srcnet/espSRC/administration/espsrc-datalake> ;
+    sv:allocation <https://example.org/srcnet/espSRC/storage-allocation/espsrc-datalake> ;
+    sv:environment "production" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:hostedAt <https://example.org/srcnet/espSRC/site/iaa> ;
+    sv:operational <https://example.org/srcnet/espSRC/operational/espsrc-datalake> ;
+    sv:realizesService <https://w3id.org/srcnet/service/espsrc-datalake> .
+
+<https://example.org/srcnet/espSRC/deployment/espsrc-gatekeeper/production> a sv:Deployment ;
+    schema:name "Gatekeeper deployment" ;
+    sv:administration <https://example.org/srcnet/espSRC/administration/espsrc-gatekeeper> ;
+    sv:allocation <https://example.org/srcnet/espSRC/allocation/espsrc-gatekeeper> ;
+    sv:environment "production" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:hostedAt <https://example.org/srcnet/espSRC/site/iaa> ;
+    sv:operational <https://example.org/srcnet/espSRC/operational/espsrc-gatekeeper> ;
+    sv:realizesService <https://w3id.org/srcnet/service/espsrc-gatekeeper> .
+
+<https://example.org/srcnet/espSRC/deployment/espsrc-posixmapper/production> a sv:Deployment ;
+    schema:name "PosixMapper deployment" ;
+    sv:administration <https://example.org/srcnet/espSRC/administration/espsrc-posixmapper> ;
+    sv:allocation <https://example.org/srcnet/espSRC/allocation/espsrc-posixmapper> ;
+    sv:environment "production" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:hostedAt <https://example.org/srcnet/espSRC/site/iaa> ;
+    sv:namespace "skaha-system" ;
+    sv:operational <https://example.org/srcnet/espSRC/operational/espsrc-posixmapper> ;
+    sv:realizesService <https://w3id.org/srcnet/service/espsrc-posixmapper> .
+
+<https://example.org/srcnet/espSRC/deployment/espsrc-preparedata/production> a sv:Deployment ;
+    schema:name "PrepareData deployment" ;
+    sv:administration <https://example.org/srcnet/espSRC/administration/espsrc-preparedata> ;
+    sv:allocation <https://example.org/srcnet/espSRC/allocation/espsrc-preparedata> ;
+    sv:dependency <https://example.org/srcnet/espSRC/dependency/espsrc-preparedata/espsrc-datalake> ;
+    sv:environment "production" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:hostedAt <https://example.org/srcnet/espSRC/site/iaa> ;
+    sv:namespace "preparedata" ;
+    sv:operational <https://example.org/srcnet/espSRC/operational/espsrc-preparedata> ;
+    sv:realizesService <https://w3id.org/srcnet/service/espsrc-preparedata> .
+
+<https://example.org/srcnet/espSRC/deployment/espsrcscienceplatform/production> a sv:Deployment ;
+    schema:name "CANFAR science platform deployment" ;
+    sv:administration <https://example.org/srcnet/espSRC/administration/espsrcscienceplatform> ;
+    sv:allocation <https://example.org/srcnet/espSRC/allocation/espsrcscienceplatform> ;
+    sv:dependency <https://example.org/srcnet/espSRC/dependency/espsrcscienceplatform/espsrc-skaha> ;
+    sv:environment "production" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:hostedAt <https://example.org/srcnet/espSRC/site/iaa> ;
+    sv:namespace "skaha-system" ;
+    sv:operational <https://example.org/srcnet/espSRC/operational/espsrcscienceplatform> ;
+    sv:realizesService <https://w3id.org/srcnet/service/espsrcscienceplatform> .
+
+<https://example.org/srcnet/espSRC/deployment/espsrcsoda/production> a sv:Deployment ;
+    schema:name "SODA data access deployment" ;
+    sv:administration <https://example.org/srcnet/espSRC/administration/espsrcsoda> ;
+    sv:allocation <https://example.org/srcnet/espSRC/allocation/espsrcsoda> ;
+    sv:dependency <https://example.org/srcnet/espSRC/dependency/espsrcsoda/espsrc-datalake> ;
+    sv:environment "production" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:hostedAt <https://example.org/srcnet/espSRC/site/iaa> ;
+    sv:namespace "espsrcsoda" ;
+    sv:operational <https://example.org/srcnet/espSRC/operational/espsrcsoda> ;
+    sv:realizesService <https://w3id.org/srcnet/service/espsrcsoda> .
+
+<https://example.org/srcnet/espSRC/endpoint/authentication> a sv:Endpoint ;
+    dcat:endpointURL <https://ska-iam.stfc.ac.uk/> ;
+    sv:endpointRole "identity-provider" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> .
+
+<https://example.org/srcnet/espSRC/endpoint/espsrcscienceplatform> a sv:Endpoint ;
+    dcat:endpointURL <https://canfar.espsrc.iaa.csic.es> ;
+    sv:endpointRole "portal" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> .
+
+<https://example.org/srcnet/espSRC/function/authentication> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "Federated authentication" .
+
+<https://example.org/srcnet/espSRC/function/datadistributionplatform> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "Federated data management" .
+
+<https://example.org/srcnet/espSRC/function/espsrc-cavern> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "User file access" .
+
+<https://example.org/srcnet/espSRC/function/espsrc-datalake> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "Local data storage and access" .
+
+<https://example.org/srcnet/espSRC/function/espsrc-gatekeeper> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "Authorise service requests" .
+
+<https://example.org/srcnet/espSRC/function/espsrc-notebook> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "Interactive notebook execution" .
+
+<https://example.org/srcnet/espSRC/function/espsrc-posixmapper> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "Map identities to POSIX users and groups" .
+
+<https://example.org/srcnet/espSRC/function/espsrc-preparedata> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "Stage data for execution" .
+
+<https://example.org/srcnet/espSRC/function/espsrc-skaha> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "Create and manage user sessions" .
+
+<https://example.org/srcnet/espSRC/function/espsrcscienceplatform> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "Interactive science sessions" .
+
+<https://example.org/srcnet/espSRC/function/espsrcsoda> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "Server-side data access" .
+
+<https://example.org/srcnet/espSRC/function/registryservice> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "Service and resource discovery" .
+
+<https://example.org/srcnet/espSRC/function/sciencegateway> a sv:FunctionalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:function "Unified science entry point" .
+
+<https://example.org/srcnet/espSRC/operational/espsrc-cavern> a sv:OperationalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:health "unknown" ;
+    sv:lifecycle "reported-deployed" .
+
+<https://example.org/srcnet/espSRC/operational/espsrc-datalake> a sv:OperationalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:health "unknown" ;
+    sv:lifecycle "reported-deployed" .
+
+<https://example.org/srcnet/espSRC/operational/espsrc-gatekeeper> a sv:OperationalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:health "unknown" ;
+    sv:lifecycle "reported-deployed" .
+
+<https://example.org/srcnet/espSRC/operational/espsrc-posixmapper> a sv:OperationalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:health "unknown" ;
+    sv:lifecycle "reported-deployed" .
+
+<https://example.org/srcnet/espSRC/operational/espsrc-preparedata> a sv:OperationalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:health "unknown" ;
+    sv:lifecycle "reported-deployed" .
+
+<https://example.org/srcnet/espSRC/operational/espsrc-skaha> a sv:OperationalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:health "unknown" ;
+    sv:lifecycle "reported-deployed" .
+
+<https://example.org/srcnet/espSRC/operational/espsrcscienceplatform> a sv:OperationalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:health "unknown" ;
+    sv:lifecycle "reported-deployed" .
+
+<https://example.org/srcnet/espSRC/operational/espsrcsoda> a sv:OperationalProfile ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:health "unknown" ;
+    sv:lifecycle "reported-deployed" .
+
+<https://example.org/srcnet/espSRC/release/skaha-chart/1.7.0> a sv:SoftwareRelease ;
+    schema:name "skaha-chart" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:releaseKind "helm-chart" ;
+    sv:version "1.7.0" .
+
+<https://example.org/srcnet/espSRC/release/skaha/1.4.0> a sv:SoftwareRelease ;
+    schema:name "skaha" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:releaseKind "application" ;
+    sv:version "1.4.0" .
+
+<https://example.org/srcnet/espSRC/security/canfar> a sv:SecurityProfile ;
+    sv:authenticatesWith <https://w3id.org/srcnet/service/authentication> ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:protocol "OIDC" .
+
+<https://example.org/srcnet/espSRC/storage-allocation/espsrc-cavern> a sv:ResourceAllocation ;
+    sv:allocationKind "allocated" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:resource <https://example.org/srcnet/espSRC/resource/cephfs> .
+
+<https://example.org/srcnet/espSRC/storage-allocation/espsrc-datalake> a sv:ResourceAllocation ;
+    sv:allocationKind "allocated" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:resource <https://example.org/srcnet/espSRC/resource/cephfs> .
+
+<https://example.org/srcnet/espSRC/storage-allocation/espsrc-skaha> a sv:ResourceAllocation ;
+    sv:allocationKind "allocated" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:resource <https://example.org/srcnet/espSRC/resource/cephfs> .
+
+<https://w3id.org/srcnet/catalog/espsrc-local> a dcat:Catalog ;
+    dcat:service <https://w3id.org/srcnet/service/espsrc-cavern>,
+        <https://w3id.org/srcnet/service/espsrc-datalake>,
+        <https://w3id.org/srcnet/service/espsrc-gatekeeper>,
+        <https://w3id.org/srcnet/service/espsrc-notebook>,
+        <https://w3id.org/srcnet/service/espsrc-posixmapper>,
+        <https://w3id.org/srcnet/service/espsrc-preparedata>,
+        <https://w3id.org/srcnet/service/espsrc-skaha>,
+        <https://w3id.org/srcnet/service/espsrcscienceplatform>,
+        <https://w3id.org/srcnet/service/espsrcsoda> .
+
+<https://w3id.org/srcnet/catalog/srcnet-global> a dcat:Catalog ;
+    dcat:service <https://w3id.org/srcnet/service/authentication>,
+        <https://w3id.org/srcnet/service/datadistributionplatform>,
+        <https://w3id.org/srcnet/service/registryservice>,
+        <https://w3id.org/srcnet/service/sciencegateway> .
+
+<https://example.org/srcnet/espSRC/deployment/espsrc-skaha/production> a sv:Deployment ;
+    schema:description "Known configuration, not current health. Earlier PVC and metrics-backend incidents do not establish present availability. Chart and image versions are intentionally separate." ;
+    schema:name "Skaha session service deployment" ;
+    sv:administration <https://example.org/srcnet/espSRC/administration/espsrc-skaha> ;
+    sv:allocation <https://example.org/srcnet/espSRC/allocation/espsrc-skaha>,
+        <https://example.org/srcnet/espSRC/storage-allocation/espsrc-skaha> ;
+    sv:dependency <https://example.org/srcnet/espSRC/dependency/espsrc-skaha/authentication>,
+        <https://example.org/srcnet/espSRC/dependency/espsrc-skaha/espsrc-cavern> ;
+    sv:environment "production" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:hostedAt <https://example.org/srcnet/espSRC/site/iaa> ;
+    sv:namespace "skaha-system" ;
+    sv:operational <https://example.org/srcnet/espSRC/operational/espsrc-skaha> ;
+    sv:realizesService <https://w3id.org/srcnet/service/espsrc-notebook>,
+        <https://w3id.org/srcnet/service/espsrc-skaha> ;
+    sv:releaseName "espsrccanfar-science-platform" ;
+    sv:security <https://example.org/srcnet/espSRC/security/canfar> ;
+    sv:software <https://example.org/srcnet/espSRC/release/skaha-chart/1.7.0>,
+        <https://example.org/srcnet/espSRC/release/skaha/1.4.0> ;
+    sv:workloadNamespace "skaha-workload" .
+
+<https://w3id.org/srcnet/node/espsrc-node> a src:Node ;
+    src:globalServiceCatalog <https://w3id.org/srcnet/catalog/srcnet-global> ;
+    src:localServiceCatalog <https://w3id.org/srcnet/catalog/espsrc-local> ;
+    sv:consumesService <https://w3id.org/srcnet/service/authentication>,
+        <https://w3id.org/srcnet/service/datadistributionplatform>,
+        <https://w3id.org/srcnet/service/registryservice>,
+        <https://w3id.org/srcnet/service/sciencegateway> .
+
+<https://w3id.org/srcnet/service/datadistributionplatform> a dcat:DataService,
+        sv:Service ;
+    schema:name "SRCNet data distribution" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/datadistributionplatform> ;
+    sv:scope "global" ;
+    sv:serviceKind "data-distribution" .
+
+<https://w3id.org/srcnet/service/espsrc-gatekeeper> a dcat:DataService,
+        sv:Service ;
+    schema:name "Gatekeeper" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/espsrc-gatekeeper> ;
+    sv:hasDeployment <https://example.org/srcnet/espSRC/deployment/espsrc-gatekeeper/production> ;
+    sv:scope "local" ;
+    sv:serviceKind "gatekeeper" .
+
+<https://w3id.org/srcnet/service/espsrc-notebook> a dcat:DataService,
+        sv:Service ;
+    schema:name "Notebook capability through CANFAR" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/espsrc-notebook> ;
+    sv:hasDeployment <https://example.org/srcnet/espSRC/deployment/espsrc-skaha/production> ;
+    sv:scope "local" ;
+    sv:serviceKind "notebook" .
+
+<https://w3id.org/srcnet/service/espsrc-preparedata> a dcat:DataService,
+        sv:Service ;
+    schema:name "PrepareData" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/espsrc-preparedata> ;
+    sv:hasDeployment <https://example.org/srcnet/espSRC/deployment/espsrc-preparedata/production> ;
+    sv:scope "local" ;
+    sv:serviceKind "prepare_data" .
+
+<https://w3id.org/srcnet/service/espsrcscienceplatform> a dcat:DataService,
+        sv:Service ;
+    schema:name "CANFAR science platform" ;
+    sv:endpoint <https://example.org/srcnet/espSRC/endpoint/espsrcscienceplatform> ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/espsrcscienceplatform> ;
+    sv:hasDeployment <https://example.org/srcnet/espSRC/deployment/espsrcscienceplatform/production> ;
+    sv:scope "local" ;
+    sv:serviceKind "canfar" .
+
+<https://w3id.org/srcnet/service/espsrcsoda> a dcat:DataService,
+        sv:Service ;
+    schema:name "SODA data access" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/espsrcsoda> ;
+    sv:hasDeployment <https://example.org/srcnet/espSRC/deployment/espsrcsoda/production> ;
+    sv:scope "local" ;
+    sv:serviceKind "soda" .
+
+<https://w3id.org/srcnet/service/registryservice> a dcat:DataService,
+        sv:Service ;
+    schema:name "SRCNet registry" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/registryservice> ;
+    sv:scope "global" ;
+    sv:serviceKind "registry" .
+
+<https://w3id.org/srcnet/service/sciencegateway> a dcat:DataService,
+        sv:Service ;
+    schema:name "SRCNet Science Gateway" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/design> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/sciencegateway> ;
+    sv:scope "global" ;
+    sv:serviceKind "science-gateway" .
+
+<https://example.org/srcnet/espSRC/resource/cephfs> a sv:InfrastructureResource ;
+    schema:name "Shared CephFS storage" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:resourceKind "storage" .
+
+<https://w3id.org/srcnet/service/espsrc-cavern> a dcat:DataService,
+        sv:Service ;
+    schema:name "Cavern storage service" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/espsrc-cavern> ;
+    sv:hasDeployment <https://example.org/srcnet/espSRC/deployment/espsrc-cavern/production> ;
+    sv:scope "local" ;
+    sv:serviceKind "cavern" .
+
+<https://w3id.org/srcnet/service/espsrc-posixmapper> a dcat:DataService,
+        sv:Service ;
+    schema:name "PosixMapper" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/espsrc-posixmapper> ;
+    sv:hasDeployment <https://example.org/srcnet/espSRC/deployment/espsrc-posixmapper/production> ;
+    sv:scope "local" ;
+    sv:serviceKind "posix-mapper" .
+
+<https://w3id.org/srcnet/service/espsrc-skaha> a dcat:DataService,
+        sv:Service ;
+    schema:name "Skaha session service" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/espsrc-skaha> ;
+    sv:hasDeployment <https://example.org/srcnet/espSRC/deployment/espsrc-skaha/production> ;
+    sv:scope "local" ;
+    sv:serviceKind "skaha" .
+
+<https://w3id.org/srcnet/service/authentication> a dcat:DataService,
+        sv:Service ;
+    schema:name "SRCNet IAM" ;
+    sv:endpoint <https://example.org/srcnet/espSRC/endpoint/authentication> ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/authentication> ;
+    sv:scope "global" ;
+    sv:serviceKind "iam" .
+
+<https://w3id.org/srcnet/service/espsrc-datalake> a dcat:DataService,
+        sv:Service ;
+    schema:name "espSRC data lake / Rucio storage" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:functional <https://example.org/srcnet/espSRC/function/espsrc-datalake> ;
+    sv:hasDeployment <https://example.org/srcnet/espSRC/deployment/espsrc-datalake/production> ;
+    sv:scope "local" ;
+    sv:serviceKind "datalake" .
+
+<https://example.org/srcnet/espSRC/resource/k3s-production> a sv:InfrastructureResource ;
+    schema:name "espSRC production k3s cluster on OpenStack" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:orchestrator "k3s / Kubernetes" ;
+    sv:resourceKind "compute" .
+
+<https://example.org/srcnet/espSRC/organization/iaa-csic> a schema:Organization ;
+    schema:name "IAA-CSIC espSRC" .
+
+<https://example.org/srcnet/espSRC/site/iaa> a sv:Site ;
+    schema:name "IAA-CSIC espSRC site" ;
+    sv:evidence <https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> ;
+    sv:partOfNode <https://w3id.org/srcnet/node/espsrc-node> .
+
+<https://example.org/srcnet/espSRC/evidence/design> a sv:Evidence ;
+    schema:name "Architectural interpretation for this example" ;
+    sv:evidenceStatus "proposed" ;
+    sv:sourceDate "2026-10-06"^^xsd:date .
+
+<https://example.org/srcnet/espSRC/evidence/operator-report-2026-10-02> a sv:Evidence ;
+    schema:description "User-provided configuration history. Not a live probe or a SiteCaps database extract. Includes Skaha chart 1.7.0 / application 1.4.0 and CANFAR component deployment." ;
+    schema:name "Operator configuration reports, 29 September–2 October 2026" ;
+    sv:evidenceStatus "reported" ;
+    sv:sourceDate "2026-10-02"^^xsd:date .

@@ -1,5 +1,12 @@
 # SRCNet-SemanticModel
 
+## Service model extension (SiteCaps)
+
+See [Services/README.md](Services/README.md) for the proposed local/global service
+model in JSON-LD and Turtle, an espSRC example, SHACL validation, an offline
+SiteCaps 0.3.98 adapter and migration documentation. The original `Model/` files
+remain unchanged. [Guía en español](Services/docs/design-es.md).
+
 ## Description
 This repository contains an early but functional semantic prototype of the SKA Regional Centre Network (SRCNet), including an OWL ontology, JSON-LD representations, example instances and SPARQL queries intended to support ongoing development and evaluation of a common semantic model for SRCNet resources and services. The repository is structured around three main directories, each serving a distinct purpose within the semantic framework:
 

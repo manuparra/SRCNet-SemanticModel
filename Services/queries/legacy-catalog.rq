@@ -1,0 +1,8 @@
+PREFIX src: <https://w3id.org/srcnet#>
+PREFIX sv: <https://w3id.org/srcnet/services#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+SELECT ?node ?catalog ?service ?deployment WHERE {
+  ?node src:localServiceCatalog ?catalog .
+  ?catalog dcat:service ?service .
+  ?service sv:hasDeployment ?deployment .
+}

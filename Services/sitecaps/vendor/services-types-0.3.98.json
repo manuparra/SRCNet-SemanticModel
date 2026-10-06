@@ -1,0 +1,1 @@
+{"local":["echo","jupyterhub","binderhub","dask","ingest","soda_sync","soda_async","gatekeeper","monitoring","perfsonar","canfar","carta","prepare_data","gaussconv","cavern","product_streamer"],"global":["rucio","iam","data-management-api","site-capabilities-api","permissions-api","auth-api","gms","global-execution-api","accounting-api"]}

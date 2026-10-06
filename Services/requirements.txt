@@ -1,0 +1,4 @@
+rdflib==7.6.0
+pyshacl==0.40.1
+jsonschema==4.26.0
+pytest==9.1.1

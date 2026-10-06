@@ -1,0 +1,147 @@
+{
+  "@context": {
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "https://schema.org/",
+    "src": "https://w3id.org/srcnet#",
+    "sv": "https://w3id.org/srcnet/services#",
+    "unit": "http://qudt.org/vocab/unit/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "https://example.org/srcnet/espSRC/synthetic/allocation",
+      "@type": "sv:ResourceAllocation",
+      "sv:allocationKind": "request",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/evidence"
+      },
+      "sv:metric": "memory-bytes",
+      "sv:quantity": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/memory"
+      },
+      "sv:resource": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/compute"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/synthetic/latency-p95/value",
+      "@type": "qudt:QuantityValue",
+      "qudt:numericValue": {
+        "@type": "xsd:decimal",
+        "@value": "0.25"
+      },
+      "qudt:unit": {
+        "@id": "unit:SEC"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/synthetic/deployment",
+      "@type": "sv:Deployment",
+      "sv:allocation": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/allocation"
+      },
+      "sv:environment": "example",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/evidence"
+      },
+      "sv:measurement": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/latency-p95"
+      },
+      "sv:objective": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/availability"
+      },
+      "sv:realizesService": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/service"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/synthetic/service",
+      "@type": "sv:Service",
+      "schema:name": "Example service",
+      "sv:hasDeployment": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/deployment"
+      },
+      "sv:scope": "local",
+      "sv:serviceKind": "canfar"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/synthetic/availability",
+      "@type": "sv:ServiceObjective",
+      "sv:comparator": ">=",
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/evidence"
+      },
+      "sv:metric": "availability",
+      "sv:quantity": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/availability/value"
+      },
+      "sv:window": {
+        "@type": "xsd:duration",
+        "@value": "P30D"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/synthetic/memory",
+      "@type": "qudt:QuantityValue",
+      "qudt:numericValue": {
+        "@type": "xsd:decimal",
+        "@value": "8589934592.0"
+      },
+      "qudt:unit": {
+        "@id": "unit:BYTE"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/synthetic/evidence",
+      "@type": "sv:Evidence",
+      "schema:name": "Synthetic tutorial data; not espSRC measurements",
+      "sv:evidenceStatus": "synthetic",
+      "sv:sourceDate": {
+        "@type": "xsd:date",
+        "@value": "2026-10-06"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/synthetic/availability/value",
+      "@type": "qudt:QuantityValue",
+      "qudt:numericValue": {
+        "@type": "xsd:decimal",
+        "@value": "99.5"
+      },
+      "qudt:unit": {
+        "@id": "unit:PERCENT"
+      }
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/synthetic/compute",
+      "@type": "sv:InfrastructureResource",
+      "sv:resourceKind": "compute"
+    },
+    {
+      "@id": "https://example.org/srcnet/espSRC/synthetic/latency-p95",
+      "@type": "sv:Measurement",
+      "prov:generatedAtTime": {
+        "@type": "xsd:dateTime",
+        "@value": "2026-10-06T00:00:00+00:00"
+      },
+      "sv:evidence": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/evidence"
+      },
+      "sv:method": "Synthetic example: p95 HTTP response latency over the stated window",
+      "sv:metric": "latency-p95",
+      "sv:quantity": {
+        "@id": "https://example.org/srcnet/espSRC/synthetic/latency-p95/value"
+      },
+      "sv:window": {
+        "@type": "xsd:duration",
+        "@value": "P30D"
+      }
+    }
+  ]
+}

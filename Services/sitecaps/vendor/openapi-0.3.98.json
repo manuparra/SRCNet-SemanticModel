@@ -1,0 +1,4997 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Site Capabilities API Overview",
+    "version": "0.3.98"
+  },
+  "paths": {
+    "/v1/nodes": {
+      "get": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "List all nodes",
+        "description": "List nodes with an option to return only node names.",
+        "operationId": "list_nodes_v1_nodes_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "only_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Return only node names",
+              "default": false,
+              "title": "Only Names"
+            },
+            "description": "Return only node names"
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Include inactive resources? e.g. in downtime, force disabled",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Include inactive resources? e.g. in downtime, force disabled"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Node"
+                  },
+                  "title": "Response 200 List Nodes V1 Nodes Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/nodes/{node_name}": {
+      "delete": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Delete a node by name",
+        "operationId": "delete_node_by_name_v1_nodes__node_name__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "node_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Node name",
+              "title": "Node Name"
+            },
+            "description": "Node name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteNodeByNameResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Get node from name",
+        "description": "Get a version of a node.",
+        "operationId": "get_node_version_v1_nodes__node_name__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "node_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Node name",
+              "title": "Node Name"
+            },
+            "description": "Node name"
+          },
+          {
+            "name": "node_version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Version of node ({version}||latest",
+              "default": "latest",
+              "title": "Node Version"
+            },
+            "description": "Version of node ({version}||latest"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Node"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/nodes/dump": {
+      "get": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Dump all versions of all nodes",
+        "description": "Dump all versions of all nodes.",
+        "operationId": "dump_nodes_v1_nodes_dump_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Node"
+                  },
+                  "type": "array",
+                  "title": "Response 200 Dump Nodes V1 Nodes Dump Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/nodes/{node_name}/sites/{site_name}": {
+      "get": {
+        "tags": [
+          "Sites"
+        ],
+        "summary": "Get site from node and site names",
+        "description": "Get site from node version.",
+        "operationId": "get_site_from_node_version_v1_nodes__node_name__sites__site_name__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "node_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Node name",
+              "title": "Node Name"
+            },
+            "description": "Node name"
+          },
+          {
+            "name": "site_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Site name",
+              "title": "Site Name"
+            },
+            "description": "Site name"
+          },
+          {
+            "name": "node_version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Version of node ({version}||latest",
+              "default": "latest",
+              "title": "Node Version"
+            },
+            "description": "Version of node ({version}||latest"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SiteWithParents"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/sites": {
+      "get": {
+        "tags": [
+          "Sites"
+        ],
+        "summary": "List all sites",
+        "description": "List versions of all sites.",
+        "operationId": "list_sites_v1_sites_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "only_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Return only site names",
+              "default": false,
+              "title": "Only Names"
+            },
+            "description": "Return only site names"
+          },
+          {
+            "name": "node_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by node names (comma-separated)",
+              "title": "Node Names"
+            },
+            "description": "Filter by node names (comma-separated)"
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Include inactive resources? e.g. in downtime, force disabled",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Include inactive resources? e.g. in downtime, force disabled"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SiteWithParents"
+                  },
+                  "title": "Response 200 List Sites V1 Sites Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/sites/{site_id}": {
+      "get": {
+        "tags": [
+          "Sites"
+        ],
+        "summary": "Get site from id",
+        "description": "Get a site description from a unique identifier.",
+        "operationId": "get_site_from_id_v1_sites__site_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "site_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Unique site identifier",
+              "title": "Site Id"
+            },
+            "description": "Unique site identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SiteWithParents"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/sites/{site_id}/enable": {
+      "put": {
+        "tags": [
+          "Sites"
+        ],
+        "summary": "Unset a site from being force disabled",
+        "operationId": "set_site_enabled_v1_sites__site_id__enable_put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "site_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Site ID",
+              "title": "Site Id"
+            },
+            "description": "Site ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SiteEnableResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/sites/{site_id}/disable": {
+      "put": {
+        "tags": [
+          "Sites"
+        ],
+        "summary": "Set a site to be force disabled",
+        "operationId": "set_site_disabled_v1_sites__site_id__disable_put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "site_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Site ID",
+              "title": "Site Id"
+            },
+            "description": "Site ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SiteDisableResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/compute": {
+      "get": {
+        "tags": [
+          "Compute"
+        ],
+        "summary": "List all compute",
+        "description": "List all compute.",
+        "operationId": "list_compute_v1_compute_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "node_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by node names (comma-separated)",
+              "title": "Node Names"
+            },
+            "description": "Filter by node names (comma-separated)"
+          },
+          {
+            "name": "site_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by site names (comma-separated)",
+              "title": "Site Names"
+            },
+            "description": "Filter by site names (comma-separated)"
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Include inactive resources? e.g. in downtime, force disabled",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Include inactive resources? e.g. in downtime, force disabled"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ComputeWithParents"
+                  },
+                  "title": "Response 200 List Compute V1 Compute Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/compute/{compute_id}": {
+      "get": {
+        "tags": [
+          "Compute"
+        ],
+        "summary": "Get compute from id",
+        "description": "Get description of a compute element from a unique identifier.",
+        "operationId": "get_compute_from_id_v1_compute__compute_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "compute_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Unique compute identifier",
+              "title": "Compute Id"
+            },
+            "description": "Unique compute identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComputeWithParents"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/compute/{compute_id}/enable": {
+      "put": {
+        "tags": [
+          "Compute"
+        ],
+        "summary": "Unset a compute from being force disabled",
+        "operationId": "set_compute_enabled_v1_compute__compute_id__enable_put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "compute_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Compute ID",
+              "title": "Compute Id"
+            },
+            "description": "Compute ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComputeEnableResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/compute/{compute_id}/disable": {
+      "put": {
+        "tags": [
+          "Compute"
+        ],
+        "summary": "Set a compute to be force disabled",
+        "operationId": "set_compute_disabled_v1_compute__compute_id__disable_put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "compute_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Compute ID",
+              "title": "Compute Id"
+            },
+            "description": "Compute ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComputeDisableResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/storages": {
+      "get": {
+        "tags": [
+          "Storages"
+        ],
+        "summary": "List all storages",
+        "description": "List all storages.",
+        "operationId": "list_storages_v1_storages_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "node_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by node names (comma-separated)",
+              "title": "Node Names"
+            },
+            "description": "Filter by node names (comma-separated)"
+          },
+          {
+            "name": "site_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by site names (comma-separated)",
+              "title": "Site Names"
+            },
+            "description": "Filter by site names (comma-separated)"
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Include inactive resources? e.g. in downtime, force disabled",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Include inactive resources? e.g. in downtime, force disabled"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StorageWithParents"
+                  },
+                  "title": "Response 200 List Storages V1 Storages Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/storages/grafana": {
+      "get": {
+        "tags": [
+          "Storages"
+        ],
+        "summary": "List all storages (Grafana format)",
+        "description": "List all storages in a format digestible by Grafana world map panels.",
+        "operationId": "list_storages_for_grafana_v1_storages_grafana_get",
+        "parameters": [
+          {
+            "name": "node_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by node names (comma-separated)",
+              "title": "Node Names"
+            },
+            "description": "Filter by node names (comma-separated)"
+          },
+          {
+            "name": "site_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by site names (comma-separated)",
+              "title": "Site Names"
+            },
+            "description": "Filter by site names (comma-separated)"
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Include inactive resources? e.g. in downtime, force disabled",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Include inactive resources? e.g. in downtime, force disabled"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StorageGrafana"
+                  },
+                  "title": "Response 200 List Storages For Grafana V1 Storages Grafana Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/storages/topojson": {
+      "get": {
+        "tags": [
+          "Storages"
+        ],
+        "summary": "List all storages (topojson format)",
+        "description": "List all storages in topojson format.",
+        "operationId": "list_storages_in_topojson_format_v1_storages_topojson_get",
+        "parameters": [
+          {
+            "name": "node_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by node names (comma-separated)",
+              "title": "Node Names"
+            },
+            "description": "Filter by node names (comma-separated)"
+          },
+          {
+            "name": "site_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by site names (comma-separated)",
+              "title": "Site Names"
+            },
+            "description": "Filter by site names (comma-separated)"
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Include inactive resources? e.g. in downtime, force disabled",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Include inactive resources? e.g. in downtime, force disabled"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StorageTopojson"
+                  },
+                  "title": "Response 200 List Storages In Topojson Format V1 Storages Topojson Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/storages/{storage_id}": {
+      "get": {
+        "tags": [
+          "Storages"
+        ],
+        "summary": "Get storage from id",
+        "description": "Get a storage description from a unique identifier.",
+        "operationId": "get_storage_from_id_v1_storages__storage_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "storage_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Unique storage identifier",
+              "title": "Storage Id"
+            },
+            "description": "Unique storage identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StorageWithParents"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/storages/{storage_id}/enable": {
+      "put": {
+        "tags": [
+          "Storages"
+        ],
+        "summary": "Unset a storage from being force disabled",
+        "operationId": "set_storage_enabled_v1_storages__storage_id__enable_put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "storage_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Storage ID",
+              "title": "Storage Id"
+            },
+            "description": "Storage ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StorageEnableResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/storages/{storage_id}/disable": {
+      "put": {
+        "tags": [
+          "Storages"
+        ],
+        "summary": "Set a storage to be force disabled",
+        "operationId": "set_storage_disabled_v1_storages__storage_id__disable_put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "storage_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Storage ID",
+              "title": "Storage Id"
+            },
+            "description": "Storage ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StorageDisableResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/storage-areas": {
+      "get": {
+        "tags": [
+          "Storage Areas"
+        ],
+        "summary": "List all storage areas",
+        "description": "List all storage areas.",
+        "operationId": "list_storage_areas_v1_storage_areas_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "node_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by node names (comma-separated)",
+              "title": "Node Names"
+            },
+            "description": "Filter by node names (comma-separated)"
+          },
+          {
+            "name": "site_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by site names (comma-separated)",
+              "title": "Site Names"
+            },
+            "description": "Filter by site names (comma-separated)"
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Include inactive resources? e.g. in downtime, force disabled",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Include inactive resources? e.g. in downtime, force disabled"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StorageAreaWithParents"
+                  },
+                  "title": "Response 200 List Storage Areas V1 Storage Areas Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/storage-areas/grafana": {
+      "get": {
+        "tags": [
+          "Storage Areas"
+        ],
+        "summary": "List all storage areas (Grafana format)",
+        "description": "List all storage areas in a format digestible by Grafana world map panels.",
+        "operationId": "list_storage_areas_for_grafana_v1_storage_areas_grafana_get",
+        "parameters": [
+          {
+            "name": "node_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by node names (comma-separated)",
+              "title": "Node Names"
+            },
+            "description": "Filter by node names (comma-separated)"
+          },
+          {
+            "name": "site_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by site names (comma-separated)",
+              "title": "Site Names"
+            },
+            "description": "Filter by site names (comma-separated)"
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Include inactive resources? e.g. in downtime, force disabled",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Include inactive resources? e.g. in downtime, force disabled"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StorageAreaGrafana"
+                  },
+                  "title": "Response 200 List Storage Areas For Grafana V1 Storage Areas Grafana Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/storage-areas/topojson": {
+      "get": {
+        "tags": [
+          "Storage Areas"
+        ],
+        "summary": "List all storage areas (topojson format)",
+        "description": "List all storage areas in topojson format.",
+        "operationId": "list_storage_areas_in_topojson_format_v1_storage_areas_topojson_get",
+        "parameters": [
+          {
+            "name": "node_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by node names (comma-separated)",
+              "title": "Node Names"
+            },
+            "description": "Filter by node names (comma-separated)"
+          },
+          {
+            "name": "site_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by site names (comma-separated)",
+              "title": "Site Names"
+            },
+            "description": "Filter by site names (comma-separated)"
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Include inactive resources? e.g. in downtime, force disabled",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Include inactive resources? e.g. in downtime, force disabled"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StorageAreaTopojson"
+                  },
+                  "title": "Response 200 List Storage Areas In Topojson Format V1 Storage Areas Topojson Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/storage-areas/types": {
+      "get": {
+        "tags": [
+          "Storage Areas"
+        ],
+        "summary": "List storage area types",
+        "description": "List storage area types.",
+        "operationId": "list_storage_area_types_v1_storage_areas_types_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array",
+                  "title": "Response 200 List Storage Area Types V1 Storage Areas Types Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/storage-areas/{storage_area_id}": {
+      "get": {
+        "tags": [
+          "Storage Areas"
+        ],
+        "summary": "Get storage area from id",
+        "description": "Get a storage area description from a unique identifier.",
+        "operationId": "get_storage_area_from_id_v1_storage_areas__storage_area_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "storage_area_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Unique storage area identifier",
+              "title": "Storage Area Id"
+            },
+            "description": "Unique storage area identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StorageAreaWithParents"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/storage-areas/{storage_area_id}/enable": {
+      "put": {
+        "tags": [
+          "Storage Areas"
+        ],
+        "summary": "Unset a storage area from being force disabled",
+        "operationId": "set_storage_area_enabled_v1_storage_areas__storage_area_id__enable_put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "storage_area_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Storage Area ID",
+              "title": "Storage Area Id"
+            },
+            "description": "Storage Area ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StorageAreaEnableResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/storage-areas/{storage_area_id}/disable": {
+      "put": {
+        "tags": [
+          "Storage Areas"
+        ],
+        "summary": "Set a storage area to be force disabled",
+        "operationId": "set_storage_area_disabled_v1_storage_areas__storage_area_id__disable_put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "storage_area_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Storage Area ID",
+              "title": "Storage Area Id"
+            },
+            "description": "Storage Area ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StorageAreaDisableResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/services": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "List all services",
+        "description": "List all services.",
+        "operationId": "list_services_v1_services_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "node_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by node names (comma-separated)",
+              "title": "Node Names"
+            },
+            "description": "Filter by node names (comma-separated)"
+          },
+          {
+            "name": "site_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by site names (comma-separated)",
+              "title": "Site Names"
+            },
+            "description": "Filter by site names (comma-separated)"
+          },
+          {
+            "name": "service_types",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by service types (comma-separated)",
+              "title": "Service Types"
+            },
+            "description": "Filter by service types (comma-separated)"
+          },
+          {
+            "name": "service_scope",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by scope of service (all||local||global)",
+              "default": "all",
+              "title": "Service Scope"
+            },
+            "description": "Filter by scope of service (all||local||global)"
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Include inactive (down/disabled) services?",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Include inactive (down/disabled) services?"
+          },
+          {
+            "name": "associated_storage_area_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by associated storage area ID",
+              "title": "Associated Storage Area Id"
+            },
+            "description": "Filter by associated storage area ID"
+          },
+          {
+            "name": "output",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Output format (e.g., 'prometheus' for Prometheus HTTP SD response)",
+              "title": "Output"
+            },
+            "description": "Output format (e.g., 'prometheus' for Prometheus HTTP SD response)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/GlobalServiceWithParentsAndType"
+                          },
+                          {
+                            "$ref": "#/components/schemas/LocalServiceWithParentsAndType"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PrometheusServiceTarget"
+                      }
+                    }
+                  ],
+                  "title": "Response 200 List Services V1 Services Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/services/types": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "List service types",
+        "description": "List service types.",
+        "operationId": "list_service_types_v1_services_types_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicesTypesResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/services/{service_id}": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Get service from id",
+        "description": "Get a service description from a unique identifier.",
+        "operationId": "get_service_from_id_v1_services__service_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Unique service identifier",
+              "title": "Service Id"
+            },
+            "description": "Unique service identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/GlobalServiceWithParentsAndType"
+                    },
+                    {
+                      "$ref": "#/components/schemas/LocalServiceWithParentsAndType"
+                    }
+                  ],
+                  "title": "Response 200 Get Service From Id V1 Services  Service Id  Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/services/{service_id}/enable": {
+      "put": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Unset a service from being force disabled",
+        "operationId": "set_service_enabled_v1_services__service_id__enable_put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Service ID",
+              "title": "Service Id"
+            },
+            "description": "Service ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceEnableResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/services/{service_id}/disable": {
+      "put": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Set a service to be force disabled",
+        "operationId": "set_service_disabled_v1_services__service_id__disable_put",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Service ID",
+              "title": "Service Id"
+            },
+            "description": "Service ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDisableResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/schemas": {
+      "get": {
+        "tags": [
+          "Schemas"
+        ],
+        "summary": "List schemas",
+        "description": "Get a list of schema names used to define entities.",
+        "operationId": "list_schemas_v1_schemas_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array",
+                  "title": "Response 200 List Schemas V1 Schemas Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/schemas/{schema}": {
+      "get": {
+        "tags": [
+          "Schemas"
+        ],
+        "summary": "Get schema",
+        "description": "Get a schema by name.",
+        "operationId": "get_schema_v1_schemas__schema__get",
+        "parameters": [
+          {
+            "name": "schema",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Schema name",
+              "title": "Schema"
+            },
+            "description": "Schema name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/schemas/render/{schema}": {
+      "get": {
+        "tags": [
+          "Schemas"
+        ],
+        "summary": "Render a schema",
+        "description": "Render a schema by name.",
+        "operationId": "render_schema_v1_schemas_render__schema__get",
+        "parameters": [
+          {
+            "name": "schema",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Schema name",
+              "title": "Schema"
+            },
+            "description": "Schema name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/ping": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Check API status",
+        "description": "Service aliveness.",
+        "operationId": "ping_v1_ping_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Check API health",
+        "description": "Service health.\n\nThis endpoint will return a 500 if any of the dependent services are down.",
+        "operationId": "health_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/queues": {
+      "get": {
+        "tags": [
+          "Queues"
+        ],
+        "summary": "List all queues",
+        "description": "List all Queues.",
+        "operationId": "list_queues_v1_queues_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "node_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by node names (comma-separated)",
+              "title": "Node Names"
+            },
+            "description": "Filter by node names (comma-separated)"
+          },
+          {
+            "name": "site_names",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Filter by site names (comma-separated)",
+              "title": "Site Names"
+            },
+            "description": "Filter by site names (comma-separated)"
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Include inactive (down/disabled) Queues?",
+              "default": false,
+              "title": "Include Inactive"
+            },
+            "description": "Include inactive (down/disabled) Queues?"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/QueueResponse"
+                  },
+                  "title": "Response 200 List Queues V1 Queues Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/queues/{queue_id}": {
+      "get": {
+        "tags": [
+          "Queues"
+        ],
+        "summary": "Get Queue from ID",
+        "description": "Get Queue from ID.",
+        "operationId": "get_queue_from_id_v1_queues__queue_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "queue_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Unique queue identifier",
+              "title": "Queue Id"
+            },
+            "description": "Unique queue identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueueResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/versions": {
+      "get": {
+        "tags": [
+          "Versions"
+        ],
+        "summary": "Get Versions",
+        "operationId": "get_versions_versions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Get Versions Versions Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Compute": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "title": "Url",
+            "examples": [
+              "service.srcdev.skao.int"
+            ]
+          },
+          "compute_units": {
+            "type": "number",
+            "title": "Compute Units",
+            "examples": [
+              10
+            ]
+          },
+          "hardware_capabilities": {
+            "type": "string",
+            "enum": [
+              "gpu",
+              "high-mem",
+              "large-scratch",
+              "fast-scratch"
+            ],
+            "title": "Hardware Capabilities",
+            "examples": [
+              "gpu",
+              "high-mem",
+              "large-scratch",
+              "fast-scratch"
+            ]
+          },
+          "hardware_type": {
+            "type": "string",
+            "enum": [
+              "bare-metal",
+              "container",
+              "vm"
+            ],
+            "title": "Hardware Type",
+            "examples": [
+              "bare-metal",
+              "container",
+              "vm"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "examples": [
+              "some description"
+            ]
+          },
+          "middleware_version": {
+            "type": "string",
+            "title": "Middleware Version",
+            "examples": [
+              "1.0.0"
+            ]
+          },
+          "associated_global_services": {
+            "items": {
+              "$ref": "#/components/schemas/GlobalService"
+            },
+            "type": "array",
+            "title": "Associated Global Services"
+          },
+          "associated_local_services": {
+            "items": {
+              "$ref": "#/components/schemas/LocalService"
+            },
+            "type": "array",
+            "title": "Associated Local Services"
+          },
+          "queues": {
+            "items": {
+              "$ref": "#/components/schemas/Queue"
+            },
+            "type": "array",
+            "title": "Queues"
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "url",
+          "compute_units",
+          "hardware_capabilities",
+          "hardware_type",
+          "description",
+          "middleware_version",
+          "associated_global_services",
+          "associated_local_services",
+          "downtime",
+          "is_force_disabled"
+        ],
+        "title": "Compute"
+      },
+      "ComputeDisableResponse": {
+        "properties": {
+          "compute_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Compute Id"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "default": true,
+            "examples": [
+              true
+            ]
+          }
+        },
+        "type": "object",
+        "title": "ComputeDisableResponse"
+      },
+      "ComputeEnableResponse": {
+        "properties": {
+          "compute_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Compute Id"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "default": false,
+            "examples": [
+              false
+            ]
+          }
+        },
+        "type": "object",
+        "title": "ComputeEnableResponse"
+      },
+      "ComputeWithParents": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "title": "Url",
+            "examples": [
+              "service.srcdev.skao.int"
+            ]
+          },
+          "compute_units": {
+            "type": "number",
+            "title": "Compute Units",
+            "examples": [
+              10
+            ]
+          },
+          "hardware_capabilities": {
+            "type": "string",
+            "enum": [
+              "gpu",
+              "high-mem",
+              "large-scratch",
+              "fast-scratch"
+            ],
+            "title": "Hardware Capabilities",
+            "examples": [
+              "gpu",
+              "high-mem",
+              "large-scratch",
+              "fast-scratch"
+            ]
+          },
+          "hardware_type": {
+            "type": "string",
+            "enum": [
+              "bare-metal",
+              "container",
+              "vm"
+            ],
+            "title": "Hardware Type",
+            "examples": [
+              "bare-metal",
+              "container",
+              "vm"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "examples": [
+              "some description"
+            ]
+          },
+          "middleware_version": {
+            "type": "string",
+            "title": "Middleware Version",
+            "examples": [
+              "1.0.0"
+            ]
+          },
+          "associated_global_services": {
+            "items": {
+              "$ref": "#/components/schemas/GlobalService"
+            },
+            "type": "array",
+            "title": "Associated Global Services"
+          },
+          "associated_local_services": {
+            "items": {
+              "$ref": "#/components/schemas/LocalService"
+            },
+            "type": "array",
+            "title": "Associated Local Services"
+          },
+          "queues": {
+            "items": {
+              "$ref": "#/components/schemas/Queue"
+            },
+            "type": "array",
+            "title": "Queues"
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          },
+          "parent_node_name": {
+            "type": "string",
+            "title": "Parent Node Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          },
+          "parent_site_name": {
+            "type": "string",
+            "title": "Parent Site Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          },
+          "parent_site_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Parent Site Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "url",
+          "compute_units",
+          "hardware_capabilities",
+          "hardware_type",
+          "description",
+          "middleware_version",
+          "associated_global_services",
+          "associated_local_services",
+          "downtime",
+          "is_force_disabled",
+          "parent_node_name",
+          "parent_site_name"
+        ],
+        "title": "ComputeWithParents"
+      },
+      "DeleteNodeByNameResponse": {
+        "properties": {
+          "deleted_from_nodes_count": {
+            "type": "integer",
+            "title": "Deleted From Nodes Count",
+            "examples": [
+              1
+            ]
+          },
+          "deleted_from_nodes_archived_count": {
+            "type": "integer",
+            "title": "Deleted From Nodes Archived Count",
+            "examples": [
+              1
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "deleted_from_nodes_count",
+          "deleted_from_nodes_archived_count"
+        ],
+        "title": "DeleteNodeByNameResponse"
+      },
+      "DependentServiceStatus": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "UP",
+              "DOWN"
+            ],
+            "title": "Status",
+            "examples": [
+              "UP"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "DependentServiceStatus"
+      },
+      "DependentServices": {
+        "properties": {
+          "permissions-api": {
+            "$ref": "#/components/schemas/DependentServiceStatus"
+          },
+          "auth-api": {
+            "$ref": "#/components/schemas/DependentServiceStatus"
+          }
+        },
+        "type": "object",
+        "required": [
+          "permissions-api",
+          "auth-api"
+        ],
+        "title": "DependentServices"
+      },
+      "GenericErrorResponse": {
+        "properties": {
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "detail"
+        ],
+        "title": "GenericErrorResponse"
+      },
+      "GlobalService": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "title": "Version",
+            "examples": [
+              "1.0.0"
+            ]
+          },
+          "prefix": {
+            "type": "string",
+            "title": "Prefix",
+            "examples": [
+              "https"
+            ]
+          },
+          "host": {
+            "type": "string",
+            "title": "Host",
+            "examples": [
+              "rucio.srcdev.skao.int"
+            ]
+          },
+          "port": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Port",
+            "examples": [
+              443
+            ]
+          },
+          "path": {
+            "type": "string",
+            "title": "Path",
+            "examples": [
+              "/path/to/service"
+            ]
+          },
+          "other_attributes": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Other Attributes",
+            "examples": [
+              {
+                "some_key": "some_value"
+              }
+            ]
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "rucio",
+              "iam",
+              "data-management-api",
+              "site-capabilities-api",
+              "permissions-api",
+              "auth-api",
+              "gms",
+              "global-execution-api",
+              "accounting-api"
+            ],
+            "title": "Type",
+            "examples": [
+              "rucio"
+            ]
+          },
+          "associated_compute_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Associated Compute Id"
+          },
+          "associated_storage_area_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Associated Storage Area Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "version",
+          "prefix",
+          "host",
+          "port",
+          "path",
+          "other_attributes",
+          "downtime",
+          "is_force_disabled",
+          "type"
+        ],
+        "title": "GlobalService"
+      },
+      "GlobalServiceWithParentsAndType": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "title": "Version",
+            "examples": [
+              "1.0.0"
+            ]
+          },
+          "prefix": {
+            "type": "string",
+            "title": "Prefix",
+            "examples": [
+              "https"
+            ]
+          },
+          "host": {
+            "type": "string",
+            "title": "Host",
+            "examples": [
+              "rucio.srcdev.skao.int"
+            ]
+          },
+          "port": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Port",
+            "examples": [
+              443
+            ]
+          },
+          "path": {
+            "type": "string",
+            "title": "Path",
+            "examples": [
+              "/path/to/service"
+            ]
+          },
+          "other_attributes": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Other Attributes",
+            "examples": [
+              {
+                "some_key": "some_value"
+              }
+            ]
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "rucio",
+              "iam",
+              "data-management-api",
+              "site-capabilities-api",
+              "permissions-api",
+              "auth-api",
+              "gms",
+              "global-execution-api",
+              "accounting-api"
+            ],
+            "title": "Type",
+            "examples": [
+              "rucio"
+            ]
+          },
+          "associated_compute_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Associated Compute Id"
+          },
+          "associated_storage_area_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Associated Storage Area Id"
+          },
+          "parent_node_name": {
+            "type": "string",
+            "title": "Parent Node Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          },
+          "parent_site_name": {
+            "type": "string",
+            "title": "Parent Site Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          },
+          "parent_site_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Parent Site Id"
+          },
+          "parent_compute_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Parent Compute Id"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "default": "global"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "version",
+          "prefix",
+          "host",
+          "port",
+          "path",
+          "other_attributes",
+          "downtime",
+          "is_force_disabled",
+          "type",
+          "parent_node_name",
+          "parent_site_name"
+        ],
+        "title": "GlobalServiceWithParentsAndType"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthResponse": {
+        "properties": {
+          "uptime": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Uptime",
+            "examples": [
+              1000
+            ]
+          },
+          "number_of_managed_requests": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Number Of Managed Requests",
+            "examples": [
+              50
+            ]
+          },
+          "dependent_services": {
+            "$ref": "#/components/schemas/DependentServices"
+          }
+        },
+        "type": "object",
+        "required": [
+          "uptime",
+          "number_of_managed_requests",
+          "dependent_services"
+        ],
+        "title": "HealthResponse"
+      },
+      "LocalService": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "title": "Version",
+            "examples": [
+              "1.0.0"
+            ]
+          },
+          "prefix": {
+            "type": "string",
+            "title": "Prefix",
+            "examples": [
+              "https"
+            ]
+          },
+          "host": {
+            "type": "string",
+            "title": "Host",
+            "examples": [
+              "rucio.srcdev.skao.int"
+            ]
+          },
+          "port": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Port",
+            "examples": [
+              443
+            ]
+          },
+          "path": {
+            "type": "string",
+            "title": "Path",
+            "examples": [
+              "/path/to/service"
+            ]
+          },
+          "other_attributes": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Other Attributes",
+            "examples": [
+              {
+                "some_key": "some_value"
+              }
+            ]
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "echo",
+              "jupyterhub",
+              "binderhub",
+              "dask",
+              "ingest",
+              "soda_sync",
+              "soda_async",
+              "gatekeeper",
+              "monitoring",
+              "perfsonar",
+              "canfar",
+              "carta",
+              "prepare_data",
+              "gaussconv",
+              "cavern",
+              "product_streamer"
+            ],
+            "title": "Type",
+            "examples": [
+              "dask"
+            ]
+          },
+          "associated_compute_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Associated Compute Id"
+          },
+          "associated_storage_area_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Associated Storage Area Id"
+          },
+          "is_mandatory": {
+            "type": "boolean",
+            "title": "Is Mandatory",
+            "examples": [
+              true,
+              false
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "version",
+          "prefix",
+          "host",
+          "port",
+          "path",
+          "other_attributes",
+          "downtime",
+          "is_force_disabled",
+          "type",
+          "is_mandatory"
+        ],
+        "title": "LocalService"
+      },
+      "LocalServiceWithParentsAndType": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "title": "Version",
+            "examples": [
+              "1.0.0"
+            ]
+          },
+          "prefix": {
+            "type": "string",
+            "title": "Prefix",
+            "examples": [
+              "https"
+            ]
+          },
+          "host": {
+            "type": "string",
+            "title": "Host",
+            "examples": [
+              "rucio.srcdev.skao.int"
+            ]
+          },
+          "port": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Port",
+            "examples": [
+              443
+            ]
+          },
+          "path": {
+            "type": "string",
+            "title": "Path",
+            "examples": [
+              "/path/to/service"
+            ]
+          },
+          "other_attributes": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Other Attributes",
+            "examples": [
+              {
+                "some_key": "some_value"
+              }
+            ]
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "echo",
+              "jupyterhub",
+              "binderhub",
+              "dask",
+              "ingest",
+              "soda_sync",
+              "soda_async",
+              "gatekeeper",
+              "monitoring",
+              "perfsonar",
+              "canfar",
+              "carta",
+              "prepare_data",
+              "gaussconv",
+              "cavern",
+              "product_streamer"
+            ],
+            "title": "Type",
+            "examples": [
+              "dask"
+            ]
+          },
+          "associated_compute_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Associated Compute Id"
+          },
+          "associated_storage_area_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Associated Storage Area Id"
+          },
+          "is_mandatory": {
+            "type": "boolean",
+            "title": "Is Mandatory",
+            "examples": [
+              true,
+              false
+            ]
+          },
+          "parent_node_name": {
+            "type": "string",
+            "title": "Parent Node Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          },
+          "parent_site_name": {
+            "type": "string",
+            "title": "Parent Site Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          },
+          "parent_site_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Parent Site Id"
+          },
+          "parent_compute_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Parent Compute Id"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "default": "local"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "version",
+          "prefix",
+          "host",
+          "port",
+          "path",
+          "other_attributes",
+          "downtime",
+          "is_force_disabled",
+          "type",
+          "is_mandatory",
+          "parent_node_name",
+          "parent_site_name"
+        ],
+        "title": "LocalServiceWithParentsAndType"
+      },
+      "Node": {
+        "properties": {
+          "_id": {
+            "type": "string",
+            "title": "Id",
+            "examples": [
+              "651d7968ebc02f9f2d66b3df"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "examples": [
+              "Some description"
+            ]
+          },
+          "sites": {
+            "items": {
+              "$ref": "#/components/schemas/Site"
+            },
+            "type": "array",
+            "title": "Sites"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At",
+            "examples": [
+              "2023-09-14T13:43:09.239513"
+            ]
+          },
+          "created_by_username": {
+            "type": "string",
+            "title": "Created By Username",
+            "examples": [
+              "username"
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Version",
+            "examples": [
+              1
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "_id",
+          "name",
+          "description",
+          "sites",
+          "created_at",
+          "created_by_username",
+          "version"
+        ],
+        "title": "Node"
+      },
+      "PingResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "UP",
+              "DOWN"
+            ],
+            "title": "Status"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "version"
+        ],
+        "title": "PingResponse"
+      },
+      "PrometheusServiceLabels": {
+        "properties": {
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "examples": [
+              "local",
+              "global"
+            ]
+          },
+          "parent_node_name": {
+            "type": "string",
+            "title": "Parent Node Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "parent_site_name": {
+            "type": "string",
+            "title": "Parent Site Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "parent_compute_id": {
+            "type": "string",
+            "title": "Parent Compute Id",
+            "examples": [
+              "db1d3ee3-74e4-48aa-afaf-8d7709a2f57c"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "examples": [
+              "7b20faca-b4d3-4d1f-8349-4dc38dcc8a1f"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "examples": [
+              "rucio"
+            ]
+          },
+          "prefix": {
+            "type": "string",
+            "title": "Prefix",
+            "examples": [
+              "https"
+            ]
+          },
+          "host": {
+            "type": "string",
+            "title": "Host",
+            "examples": [
+              "rucio.srcdev.skao.int"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "title": "Path",
+            "examples": [
+              "/path/to/service"
+            ]
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "scope",
+          "parent_node_name",
+          "parent_site_name",
+          "parent_compute_id",
+          "id",
+          "type",
+          "prefix",
+          "host",
+          "path"
+        ],
+        "title": "PrometheusServiceLabels"
+      },
+      "PrometheusServiceTarget": {
+        "properties": {
+          "targets": {
+            "items": {
+              "type": "string",
+              "maxLength": 2083,
+              "minLength": 1,
+              "format": "uri"
+            },
+            "type": "array",
+            "title": "Targets"
+          },
+          "labels": {
+            "$ref": "#/components/schemas/PrometheusServiceLabels"
+          }
+        },
+        "type": "object",
+        "required": [
+          "targets",
+          "labels"
+        ],
+        "title": "PrometheusServiceTarget"
+      },
+      "Queue": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "default"
+            ]
+          },
+          "max_cpu_cores": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Cpu Cores",
+            "examples": [
+              100
+            ]
+          },
+          "max_memory_gb": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Memory Gb",
+            "examples": [
+              512
+            ]
+          },
+          "max_scratch_gb": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Scratch Gb",
+            "examples": [
+              1024
+            ]
+          },
+          "other_attributes": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Other Attributes",
+            "examples": [
+              {
+                "some_key": "some_value"
+              }
+            ]
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "other_attributes",
+          "downtime",
+          "is_force_disabled"
+        ],
+        "title": "Queue"
+      },
+      "QueueResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "default"
+            ]
+          },
+          "max_cpu_cores": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Cpu Cores",
+            "examples": [
+              100
+            ]
+          },
+          "max_memory_gb": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Memory Gb",
+            "examples": [
+              512
+            ]
+          },
+          "max_scratch_gb": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Scratch Gb",
+            "examples": [
+              1024
+            ]
+          },
+          "other_attributes": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Other Attributes",
+            "examples": [
+              {
+                "some_key": "some_value"
+              }
+            ]
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          },
+          "parent_node_name": {
+            "type": "string",
+            "title": "Parent Node Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          },
+          "parent_site_name": {
+            "type": "string",
+            "title": "Parent Site Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          },
+          "parent_site_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Parent Site Id"
+          },
+          "parent_compute_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Parent Compute Id"
+          },
+          "parent_compute_name": {
+            "type": "string",
+            "title": "Parent Compute Name",
+            "examples": [
+              "UKSRC-DEV",
+              "CHSRC-DEV"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "other_attributes",
+          "downtime",
+          "is_force_disabled",
+          "parent_node_name",
+          "parent_site_name",
+          "parent_compute_name"
+        ],
+        "title": "QueueResponse"
+      },
+      "Schema": {
+        "properties": {
+          "version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Version",
+            "examples": [
+              1
+            ]
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "examples": [
+              "object"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "examples": [
+              "Site definition schema"
+            ]
+          },
+          "properties": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Properties"
+          }
+        },
+        "type": "object",
+        "required": [
+          "version",
+          "type",
+          "description",
+          "properties"
+        ],
+        "title": "Schema"
+      },
+      "ServiceDisableResponse": {
+        "properties": {
+          "service_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Service Id"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "default": true,
+            "examples": [
+              true
+            ]
+          }
+        },
+        "type": "object",
+        "title": "ServiceDisableResponse"
+      },
+      "ServiceEnableResponse": {
+        "properties": {
+          "service_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Service Id"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "default": false,
+            "examples": [
+              false
+            ]
+          }
+        },
+        "type": "object",
+        "title": "ServiceEnableResponse"
+      },
+      "ServicesTypesResponse": {
+        "properties": {
+          "global": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "rucio",
+                "iam",
+                "data-management-api",
+                "site-capabilities-api",
+                "permissions-api",
+                "auth-api",
+                "gms",
+                "global-execution-api",
+                "accounting-api"
+              ]
+            },
+            "type": "array",
+            "title": "Global"
+          },
+          "local": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "echo",
+                "jupyterhub",
+                "binderhub",
+                "dask",
+                "ingest",
+                "soda_sync",
+                "soda_async",
+                "gatekeeper",
+                "monitoring",
+                "perfsonar",
+                "canfar",
+                "carta",
+                "prepare_data",
+                "gaussconv",
+                "cavern",
+                "product_streamer"
+              ]
+            },
+            "type": "array",
+            "title": "Local"
+          }
+        },
+        "type": "object",
+        "required": [
+          "global",
+          "local"
+        ],
+        "title": "ServicesTypesResponse"
+      },
+      "Site": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "is_production_site": {
+            "type": "boolean",
+            "title": "Is Production Site",
+            "default": false,
+            "examples": [
+              true,
+              false
+            ]
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "comments": {
+            "type": "string",
+            "title": "Comments",
+            "examples": [
+              "Some version comments"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "examples": [
+              "Some description"
+            ]
+          },
+          "country": {
+            "type": "string",
+            "title": "Country",
+            "examples": [
+              "GB"
+            ]
+          },
+          "latitude": {
+            "type": "number",
+            "title": "Latitude",
+            "examples": [
+              51.4964
+            ]
+          },
+          "longitude": {
+            "type": "number",
+            "title": "Longitude",
+            "examples": [
+              -0.1224
+            ]
+          },
+          "primary_contact_email": {
+            "type": "string",
+            "title": "Primary Contact Email",
+            "examples": [
+              "someone1@email.com"
+            ]
+          },
+          "secondary_contact_email": {
+            "type": "string",
+            "title": "Secondary Contact Email",
+            "examples": [
+              "someone2@email.com"
+            ]
+          },
+          "compute": {
+            "items": {
+              "$ref": "#/components/schemas/Compute"
+            },
+            "type": "array",
+            "title": "Compute"
+          },
+          "storages": {
+            "items": {
+              "$ref": "#/components/schemas/Storage"
+            },
+            "type": "array",
+            "title": "Storages"
+          },
+          "other_attributes": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Other Attributes",
+            "examples": [
+              {
+                "some_key": "some_value"
+              }
+            ]
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "comments",
+          "description",
+          "country",
+          "latitude",
+          "longitude",
+          "primary_contact_email",
+          "secondary_contact_email",
+          "compute",
+          "storages",
+          "other_attributes",
+          "downtime",
+          "is_force_disabled"
+        ],
+        "title": "Site"
+      },
+      "SiteDisableResponse": {
+        "properties": {
+          "site_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Site Id"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "default": true,
+            "examples": [
+              true
+            ]
+          }
+        },
+        "type": "object",
+        "title": "SiteDisableResponse"
+      },
+      "SiteEnableResponse": {
+        "properties": {
+          "site_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Site Id"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "default": false,
+            "examples": [
+              false
+            ]
+          }
+        },
+        "type": "object",
+        "title": "SiteEnableResponse"
+      },
+      "SiteWithParents": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "is_production_site": {
+            "type": "boolean",
+            "title": "Is Production Site",
+            "default": false,
+            "examples": [
+              true,
+              false
+            ]
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "comments": {
+            "type": "string",
+            "title": "Comments",
+            "examples": [
+              "Some version comments"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "examples": [
+              "Some description"
+            ]
+          },
+          "country": {
+            "type": "string",
+            "title": "Country",
+            "examples": [
+              "GB"
+            ]
+          },
+          "latitude": {
+            "type": "number",
+            "title": "Latitude",
+            "examples": [
+              51.4964
+            ]
+          },
+          "longitude": {
+            "type": "number",
+            "title": "Longitude",
+            "examples": [
+              -0.1224
+            ]
+          },
+          "primary_contact_email": {
+            "type": "string",
+            "title": "Primary Contact Email",
+            "examples": [
+              "someone1@email.com"
+            ]
+          },
+          "secondary_contact_email": {
+            "type": "string",
+            "title": "Secondary Contact Email",
+            "examples": [
+              "someone2@email.com"
+            ]
+          },
+          "compute": {
+            "items": {
+              "$ref": "#/components/schemas/Compute"
+            },
+            "type": "array",
+            "title": "Compute"
+          },
+          "storages": {
+            "items": {
+              "$ref": "#/components/schemas/Storage"
+            },
+            "type": "array",
+            "title": "Storages"
+          },
+          "other_attributes": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Other Attributes",
+            "examples": [
+              {
+                "some_key": "some_value"
+              }
+            ]
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          },
+          "parent_node_name": {
+            "type": "string",
+            "title": "Parent Node Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "comments",
+          "description",
+          "country",
+          "latitude",
+          "longitude",
+          "primary_contact_email",
+          "secondary_contact_email",
+          "compute",
+          "storages",
+          "other_attributes",
+          "downtime",
+          "is_force_disabled",
+          "parent_node_name"
+        ],
+        "title": "SiteWithParents"
+      },
+      "Storage": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "host": {
+            "type": "string",
+            "title": "Host",
+            "examples": [
+              "storm.srcdev.skao.int"
+            ]
+          },
+          "base_path": {
+            "type": "string",
+            "title": "Base Path",
+            "examples": [
+              "/path/to/storage"
+            ]
+          },
+          "srm": {
+            "type": "string",
+            "title": "Srm",
+            "examples": [
+              "srm"
+            ]
+          },
+          "device_type": {
+            "type": "string",
+            "title": "Device Type",
+            "examples": [
+              "hdd"
+            ]
+          },
+          "size_in_terabytes": {
+            "type": "number",
+            "title": "Size In Terabytes",
+            "examples": [
+              10
+            ]
+          },
+          "supported_protocols": {
+            "items": {
+              "$ref": "#/components/schemas/StorageProtocol"
+            },
+            "type": "array",
+            "title": "Supported Protocols"
+          },
+          "areas": {
+            "items": {
+              "$ref": "#/components/schemas/StorageArea"
+            },
+            "type": "array",
+            "title": "Areas"
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "host",
+          "base_path",
+          "srm",
+          "device_type",
+          "size_in_terabytes",
+          "supported_protocols",
+          "areas",
+          "downtime",
+          "is_force_disabled"
+        ],
+        "title": "Storage"
+      },
+      "StorageArea": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "rse",
+              "ingest"
+            ],
+            "title": "Type",
+            "examples": [
+              "rse"
+            ]
+          },
+          "relative_path": {
+            "type": "string",
+            "title": "Relative Path",
+            "examples": [
+              "/rel/path/to/storage/area"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "STFC_STORM"
+            ]
+          },
+          "other_attributes": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Other Attributes",
+            "examples": [
+              {
+                "some_key": "some_value"
+              }
+            ]
+          },
+          "tier": {
+            "type": "integer",
+            "title": "Tier",
+            "examples": [
+              0,
+              1
+            ]
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "relative_path",
+          "name",
+          "other_attributes",
+          "tier",
+          "downtime",
+          "is_force_disabled"
+        ],
+        "title": "StorageArea"
+      },
+      "StorageAreaDisableResponse": {
+        "properties": {
+          "storage_area_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Storage Area Id"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "default": true,
+            "examples": [
+              true
+            ]
+          }
+        },
+        "type": "object",
+        "title": "StorageAreaDisableResponse"
+      },
+      "StorageAreaEnableResponse": {
+        "properties": {
+          "storage_area_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Storage Area Id"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "default": false,
+            "examples": [
+              false
+            ]
+          }
+        },
+        "type": "object",
+        "title": "StorageAreaEnableResponse"
+      },
+      "StorageAreaGrafana": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key",
+            "examples": [
+              "JPSRC"
+            ]
+          },
+          "latitude": {
+            "type": "number",
+            "title": "Latitude",
+            "examples": [
+              35.6754
+            ]
+          },
+          "longitude": {
+            "type": "number",
+            "title": "Longitude",
+            "examples": [
+              139.5369
+            ]
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "JPSRC"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "latitude",
+          "longitude",
+          "name"
+        ],
+        "title": "StorageAreaGrafana"
+      },
+      "StorageAreaTopojson": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "examples": [
+              "Topology"
+            ]
+          },
+          "objects": {
+            "$ref": "#/components/schemas/StorageAreaTopojsonObject"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "objects"
+        ],
+        "title": "StorageAreaTopojson"
+      },
+      "StorageAreaTopojsonObject": {
+        "properties": {
+          "sites": {
+            "$ref": "#/components/schemas/StorageAreaTopojsonObjectSite"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sites"
+        ],
+        "title": "StorageAreaTopojsonObject"
+      },
+      "StorageAreaTopojsonObjectSite": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "examples": [
+              "GeometryCollection"
+            ]
+          },
+          "geometries": {
+            "items": {
+              "$ref": "#/components/schemas/StorageAreaTopojsonObjectSiteGeometry"
+            },
+            "type": "array",
+            "title": "Geometries"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "geometries"
+        ],
+        "title": "StorageAreaTopojsonObjectSite"
+      },
+      "StorageAreaTopojsonObjectSiteGeometry": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "examples": [
+              "Point"
+            ]
+          },
+          "coordinates": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Coordinates"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "coordinates"
+        ],
+        "title": "StorageAreaTopojsonObjectSiteGeometry"
+      },
+      "StorageAreaWithParents": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "rse",
+              "ingest"
+            ],
+            "title": "Type",
+            "examples": [
+              "rse"
+            ]
+          },
+          "relative_path": {
+            "type": "string",
+            "title": "Relative Path",
+            "examples": [
+              "/rel/path/to/storage/area"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "STFC_STORM"
+            ]
+          },
+          "other_attributes": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Other Attributes",
+            "examples": [
+              {
+                "some_key": "some_value"
+              }
+            ]
+          },
+          "tier": {
+            "type": "integer",
+            "title": "Tier",
+            "examples": [
+              0,
+              1
+            ]
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          },
+          "parent_node_name": {
+            "type": "string",
+            "title": "Parent Node Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          },
+          "parent_site_name": {
+            "type": "string",
+            "title": "Parent Site Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          },
+          "parent_site_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Parent Site Id"
+          },
+          "parent_storage_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Parent Storage Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "relative_path",
+          "name",
+          "other_attributes",
+          "tier",
+          "downtime",
+          "is_force_disabled",
+          "parent_node_name",
+          "parent_site_name"
+        ],
+        "title": "StorageAreaWithParents"
+      },
+      "StorageDisableResponse": {
+        "properties": {
+          "storage_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Storage Id"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "default": true,
+            "examples": [
+              true
+            ]
+          }
+        },
+        "type": "object",
+        "title": "StorageDisableResponse"
+      },
+      "StorageEnableResponse": {
+        "properties": {
+          "storage_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Storage Id"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "default": false,
+            "examples": [
+              false
+            ]
+          }
+        },
+        "type": "object",
+        "title": "StorageEnableResponse"
+      },
+      "StorageGrafana": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key",
+            "examples": [
+              "JPSRC_STORM"
+            ]
+          },
+          "latitude": {
+            "type": "number",
+            "title": "Latitude",
+            "examples": [
+              35.6754
+            ]
+          },
+          "longitude": {
+            "type": "number",
+            "title": "Longitude",
+            "examples": [
+              139.5369
+            ]
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "JPSRC_STORM"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "latitude",
+          "longitude",
+          "name"
+        ],
+        "title": "StorageGrafana"
+      },
+      "StorageProtocol": {
+        "properties": {
+          "prefix": {
+            "type": "string",
+            "title": "Prefix",
+            "examples": [
+              "https"
+            ]
+          },
+          "port": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Port",
+            "examples": [
+              443
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "prefix",
+          "port"
+        ],
+        "title": "StorageProtocol"
+      },
+      "StorageTopojson": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "examples": [
+              "Topology"
+            ]
+          },
+          "objects": {
+            "$ref": "#/components/schemas/StorageTopojsonObject"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "objects"
+        ],
+        "title": "StorageTopojson"
+      },
+      "StorageTopojsonObject": {
+        "properties": {
+          "sites": {
+            "$ref": "#/components/schemas/StorageTopojsonObjectSite"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sites"
+        ],
+        "title": "StorageTopojsonObject"
+      },
+      "StorageTopojsonObjectSite": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "examples": [
+              "GeometryCollection"
+            ]
+          },
+          "geometries": {
+            "items": {
+              "$ref": "#/components/schemas/StorageTopojsonObjectSiteGeometry"
+            },
+            "type": "array",
+            "title": "Geometries"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "geometries"
+        ],
+        "title": "StorageTopojsonObjectSite"
+      },
+      "StorageTopojsonObjectSiteGeometry": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "examples": [
+              "Point"
+            ]
+          },
+          "coordinates": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Coordinates"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type",
+          "coordinates"
+        ],
+        "title": "StorageTopojsonObjectSiteGeometry"
+      },
+      "StorageWithParents": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "examples": [
+              "SKAOSRC"
+            ]
+          },
+          "host": {
+            "type": "string",
+            "title": "Host",
+            "examples": [
+              "storm.srcdev.skao.int"
+            ]
+          },
+          "base_path": {
+            "type": "string",
+            "title": "Base Path",
+            "examples": [
+              "/path/to/storage"
+            ]
+          },
+          "srm": {
+            "type": "string",
+            "title": "Srm",
+            "examples": [
+              "srm"
+            ]
+          },
+          "device_type": {
+            "type": "string",
+            "title": "Device Type",
+            "examples": [
+              "hdd"
+            ]
+          },
+          "size_in_terabytes": {
+            "type": "number",
+            "title": "Size In Terabytes",
+            "examples": [
+              10
+            ]
+          },
+          "supported_protocols": {
+            "items": {
+              "$ref": "#/components/schemas/StorageProtocol"
+            },
+            "type": "array",
+            "title": "Supported Protocols"
+          },
+          "areas": {
+            "items": {
+              "$ref": "#/components/schemas/StorageArea"
+            },
+            "type": "array",
+            "title": "Areas"
+          },
+          "downtime": {
+            "items": {
+              "$ref": "#/components/schemas/ska_src_site_capabilities_api__models__storage__Downtime"
+            },
+            "type": "array",
+            "title": "Downtime"
+          },
+          "is_force_disabled": {
+            "type": "boolean",
+            "title": "Is Force Disabled",
+            "examples": [
+              true,
+              false
+            ]
+          },
+          "parent_node_name": {
+            "type": "string",
+            "title": "Parent Node Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          },
+          "parent_site_name": {
+            "type": "string",
+            "title": "Parent Site Name",
+            "examples": [
+              "SKAOSRC",
+              "CNSRC",
+              "KRSRC",
+              "SPSRC",
+              "JPSRC"
+            ]
+          },
+          "parent_site_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Parent Site Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "host",
+          "base_path",
+          "srm",
+          "device_type",
+          "size_in_terabytes",
+          "supported_protocols",
+          "areas",
+          "downtime",
+          "is_force_disabled",
+          "parent_node_name",
+          "parent_site_name"
+        ],
+        "title": "StorageWithParents"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "ska_src_site_capabilities_api__models__storage__Downtime": {
+        "properties": {
+          "date_range": {
+            "type": "string",
+            "title": "Date Range",
+            "examples": [
+              "2025-03-04T00:00:00.000Z to 2025-03-30T00:00:00.000Z"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Planned",
+              "Unplanned"
+            ],
+            "title": "Type"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason",
+            "examples": [
+              "Network issues."
+            ]
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date_range",
+          "type",
+          "reason"
+        ],
+        "title": "Downtime"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Nodes",
+      "description": "Operations on nodes.",
+      "x-tag-expanded": false
+    },
+    {
+      "name": "Sites",
+      "description": "Operations on sites.",
+      "x-tag-expanded": false
+    },
+    {
+      "name": "Compute",
+      "description": "Operations on site compute.",
+      "x-tag-expanded": false
+    },
+    {
+      "name": "Storages",
+      "description": "Operations on site storages.",
+      "x-tag-expanded": false
+    },
+    {
+      "name": "Storage Areas",
+      "description": "Operations on site storage areas.",
+      "x-tag-expanded": false
+    },
+    {
+      "name": "Services",
+      "description": "Operations on site services.",
+      "x-tag-expanded": false
+    },
+    {
+      "name": "Schemas",
+      "description": "Schema operations.",
+      "x-tag-expanded": false
+    },
+    {
+      "name": "Status",
+      "description": "Operations describing the status of the API.",
+      "x-tag-expanded": false
+    }
+  ]
+}
